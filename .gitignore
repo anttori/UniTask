@@ -1,0 +1,4 @@
+﻿.firebase/
+.vs/
+*.log
+unitask_backup_*.json

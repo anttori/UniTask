@@ -1,0 +1,2304 @@
+<!DOCTYPE html>
+<html lang="en" class="dark overflow-x-hidden">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UniTask — Academic Homework Tracker</title>
+  <!-- Embedded Favicon, Apple Touch Icon & Web App Manifest -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjNjM2NmYxIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjN2MzYWVkIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9InVybCgjZykiLz48cGF0aCBkPSJNMzIgMTRMNTYgMjZMMzIgMzhMOCAyNkwzMiAxNFoiIGZpbGw9IiNmZmYiLz48cGF0aCBkPSJNMTcgMzRWNDJDMTcgNDIgMjMgNDggMzIgNDhDNDEgNDggNDcgNDIgNDcgNDJWMzRMMzIgNDEuNUwxNyAzNFoiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuOTIiLz48cGF0aCBkPSJNNTMgMjcuNVY0MyIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxjaXJjbGUgY3g9IjUzIiBjeT0iNDQuNSIgcj0iMi41IiBmaWxsPSIjZmZmIi8+PC9zdmc+" />
+  <link rel="icon" type="image/png" sizes="192x192" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAE0UlEQVR42u3dTXLUShQFYamCVeD9mKFZKj3E+zHbMCMiCCKM+6dKVbrnyw08dTtTp9Rt/PZtMV6e3943lOXy+rSvdD072ZEcxU56JMewEx/JIezER3IIO/GRHMJOfCSH0MiPM9HbsZ34SF6DRn4kr0EjP5IjaORHcgSN/EiOoJEfyRE08iM5gkZ+JEfQyI/kCBr5kRxB8zYhmebuj+QVaORHcgSOQHAEcvdH6gpYAFgAd3+kroAFgAVw90fqClgAWAB3f6SugAWABQCiA3D8QeoxyALAAgACAAQAZLF7AIYFAAQACAAQAI7jx8+v3gQPwcTftm37/u2XN0YA7vhCEICjjhAE4IwvBAF4uBWCALLFF4IAiC8EARBfCAIgvhAEQHwhCID4QhAA8YUgAOILQQDEF4IAiC8EARBfCAIgvhAEQHwhCID4QsgNgPhCiAyA+EKIDID4QogMgPhCiAyA+EKIDID4QogMgPhCiAyA+EKIDID4QogMgPhCiAyA+EKIDID4QogMgPiYGcK0AIiPFUI4PADiY6UQDguA+FgxhOEBEB8rh9COuHh/fQCrrkA78oUIAavRZhQtBMQGIATMeNj9iC+rvHgPy8SPDEAIxBeAEIgvACEQXwBCIL4AhEB8AQiB+AIQAvEFIATiC0AIxBeAEIgvACEQXwBCIL4AhEB8AQiB+AIQAvEFIATiC0AIxBeAEIh/Ja3aC+olbqV/s9zztVS7MZRcgD8/pB4/9DMvQs+Aqx4N21aYnj+0My1C72ut/FxU/hmg5xqsvgi9A034QKBtIfT+Ya60CCOuJeVj4ahPgXqvwexFGBFg2vchbQtkxA/5yEUY9d9K/DIw9nuAEWswehFGBZb86yBtC2fUD7/nXXrkuqT/LpRvggeuwaOLMPJI5ZcALcChUtxyFx/9PEF+CzBlDT5bhNEP0cS3AMvI8vdd/ohPkMhvAZZbA3d9C2ANXLcFsAbEtwDuquS3ANaA+BbAGpDfAlgD4lsAaxAh/8zXsr88v70Tsi9Vf41h1j+6Gfl+ll2AmQ+ooyRNlH/06y67AJXEqbZm976eEdcS8Qxw5jWoepRbhYgFOKNQnmGOuba4T4HOsAbu+scR+T3AzL/k8L/vDYh/PNHfA8z82z7/yj5L/kp/A9UCPCDBzDVw1/cQ7CE5SHwfg5LD67MA1iBZ/Fvf21HXbwEC7pYrvo5brmnk9VuAwmtwloA/em+PuH4BFAzBOd8RKFYu8luAyDUgvgWIlY78FiByDYhvAWLXgPwWIHINiC+AyBCI7wgUeywivwWIXAPiW4DYNSC/BYhcA+JbgNg1IL8FiFwD4lsAawABAAIABAAIABAAIABgVACX16fd24BELq9PuwWAIxAgAEAAQGAAHoSR+ABsAWABvAUQgGMQAo8/FgAW4KMygOp3fwsAC/BZIUDVu78FgAW4thSg2t3fAsAC3FoMUOXu/+kCiACV5XcEgiPQowUBZ737X70AIkBF+W86AokA1eS/+RlABKgk/10PwSJAFfnvCkAEqCL/3QGIABXkfygAEeDs8j8cgAhwZvm3bdu6yuv/N4aziN9tAawBzip/9wWwBjiL+MMDEALOcKo47MgiBKx4nD78zC4ErPQcOfWhVQyYIf0yAYiC7LP5DXPzPMB8HQvSAAAAAElFTkSuQmCC" />
+  <link rel="apple-touch-icon" sizes="192x192" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAE0UlEQVR42u3dTXLUShQFYamCVeD9mKFZKj3E+zHbMCMiCCKM+6dKVbrnyw08dTtTp9Rt/PZtMV6e3943lOXy+rSvdD072ZEcxU56JMewEx/JIezER3IIO/GRHMJOfCSH0MiPM9HbsZ34SF6DRn4kr0EjP5IjaORHcgSN/EiOoJEfyRE08iM5gkZ+JEfQyI/kCBr5kRxB8zYhmebuj+QVaORHcgSOQHAEcvdH6gpYAFgAd3+kroAFgAVw90fqClgAWAB3f6SugAWABQCiA3D8QeoxyALAAgACAAQAZLF7AIYFAAQACAAQAI7jx8+v3gQPwcTftm37/u2XN0YA7vhCEICjjhAE4IwvBAF4uBWCALLFF4IAiC8EARBfCAIgvhAEQHwhCID4QhAA8YUgAOILQQDEF4IAiC8EARBfCAIgvhAEQHwhCID4QsgNgPhCiAyA+EKIDID4QogMgPhCiAyA+EKIDID4QogMgPhCiAyA+EKIDID4QogMgPhCiAyA+EKIDID4QogMgPiYGcK0AIiPFUI4PADiY6UQDguA+FgxhOEBEB8rh9COuHh/fQCrrkA78oUIAavRZhQtBMQGIATMeNj9iC+rvHgPy8SPDEAIxBeAEIgvACEQXwBCIL4AhEB8AQiB+AIQAvEFIATiC0AIxBeAEIgvACEQXwBCIL4AhEB8AQiB+AIQAvEFIATiC0AIxBeAEIh/Ja3aC+olbqV/s9zztVS7MZRcgD8/pB4/9DMvQs+Aqx4N21aYnj+0My1C72ut/FxU/hmg5xqsvgi9A034QKBtIfT+Ya60CCOuJeVj4ahPgXqvwexFGBFg2vchbQtkxA/5yEUY9d9K/DIw9nuAEWswehFGBZb86yBtC2fUD7/nXXrkuqT/LpRvggeuwaOLMPJI5ZcALcChUtxyFx/9PEF+CzBlDT5bhNEP0cS3AMvI8vdd/ohPkMhvAZZbA3d9C2ANXLcFsAbEtwDuquS3ANaA+BbAGpDfAlgD4lsAaxAh/8zXsr88v70Tsi9Vf41h1j+6Gfl+ll2AmQ+ooyRNlH/06y67AJXEqbZm976eEdcS8Qxw5jWoepRbhYgFOKNQnmGOuba4T4HOsAbu+scR+T3AzL/k8L/vDYh/PNHfA8z82z7/yj5L/kp/A9UCPCDBzDVw1/cQ7CE5SHwfg5LD67MA1iBZ/Fvf21HXbwEC7pYrvo5brmnk9VuAwmtwloA/em+PuH4BFAzBOd8RKFYu8luAyDUgvgWIlY78FiByDYhvAWLXgPwWIHINiC+AyBCI7wgUeywivwWIXAPiW4DYNSC/BYhcA+JbgNg1IL8FiFwD4lsAawABAAIABAAIABAAIABgVACX16fd24BELq9PuwWAIxAgAEAAQGAAHoSR+ABsAWABvAUQgGMQAo8/FgAW4KMygOp3fwsAC/BZIUDVu78FgAW4thSg2t3fAsAC3FoMUOXu/+kCiACV5XcEgiPQowUBZ737X70AIkBF+W86AokA1eS/+RlABKgk/10PwSJAFfnvCkAEqCL/3QGIABXkfygAEeDs8j8cgAhwZvm3bdu6yuv/N4aziN9tAawBzip/9wWwBjiL+MMDEALOcKo47MgiBKx4nD78zC4ErPQcOfWhVQyYIf0yAYiC7LP5DXPzPMB8HQvSAAAAAElFTkSuQmCC" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="UniTask" />
+  <meta name="application-name" content="UniTask" />
+  <meta name="theme-color" content="#0b1120" />
+  <script>
+    // Dynamically attach Web App Manifest so no external manifest.json file is required
+    (function() {
+      const manifestData = {
+        name: "UniTask — Academic Homework Tracker",
+        short_name: "UniTask",
+        description: "Private Cloud Academic Homework Tracker",
+        start_url: window.location.origin + "/",
+        scope: window.location.origin + "/",
+        display: "standalone",
+        background_color: "#0b1120",
+        theme_color: "#4f46e5",
+        icons: [
+          {
+            src: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjNjM2NmYxIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjN2MzYWVkIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9InVybCgjZykiLz48cGF0aCBkPSJNMzIgMTRMNTYgMjZMMzIgMzhMOCAyNkwzMiAxNFoiIGZpbGw9IiNmZmYiLz48cGF0aCBkPSJNMTcgMzRWNDJDMTcgNDIgMjMgNDggMzIgNDhDNDEgNDggNDcgNDIgNDcgNDJWMzRMMzIgNDEuNUwxNyAzNFoiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuOTIiLz48cGF0aCBkPSJNNTMgMjcuNVY0MyIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxjaXJjbGUgY3g9IjUzIiBjeT0iNDQuNSIgcj0iMi41IiBmaWxsPSIjZmZmIi8+PC9zdmc+",
+            sizes: "any",
+            type: "image/svg+xml",
+            purpose: "any maskable"
+          },
+          {
+            src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAE0UlEQVR42u3dTXLUShQFYamCVeD9mKFZKj3E+zHbMCMiCCKM+6dKVbrnyw08dTtTp9Rt/PZtMV6e3943lOXy+rSvdD072ZEcxU56JMewEx/JIezER3IIO/GRHMJOfCSH0MiPM9HbsZ34SF6DRn4kr0EjP5IjaORHcgSN/EiOoJEfyRE08iM5gkZ+JEfQyI/kCBr5kRxB8zYhmebuj+QVaORHcgSOQHAEcvdH6gpYAFgAd3+kroAFgAVw90fqClgAWAB3f6SugAWABQCiA3D8QeoxyALAAgACAAQAZLF7AIYFAAQACAAQAI7jx8+v3gQPwcTftm37/u2XN0YA7vhCEICjjhAE4IwvBAF4uBWCALLFF4IAiC8EARBfCAIgvhAEQHwhCID4QhAA8YUgAOILQQDEF4IAiC8EARBfCAIgvhAEQHwhCID4QsgNgPhCiAyA+EKIDID4QogMgPhCiAyA+EKIDID4QogMgPhCiAyA+EKIDID4QogMgPhCiAyA+EKIDID4QogMgPiYGcK0AIiPFUI4PADiY6UQDguA+FgxhOEBEB8rh9COuHh/fQCrrkA78oUIAavRZhQtBMQGIATMeNj9iC+rvHgPy8SPDEAIxBeAEIgvACEQXwBCIL4AhEB8AQiB+AIQAvEFIATiC0AIxBeAEIgvACEQXwBCIL4AhEB8AQiB+AIQAvEFIATiC0AIxBeAEIh/Ja3aC+olbqV/s9zztVS7MZRcgD8/pB4/9DMvQs+Aqx4N21aYnj+0My1C72ut/FxU/hmg5xqsvgi9A034QKBtIfT+Ya60CCOuJeVj4ahPgXqvwexFGBFg2vchbQtkxA/5yEUY9d9K/DIw9nuAEWswehFGBZb86yBtC2fUD7/nXXrkuqT/LpRvggeuwaOLMPJI5ZcALcChUtxyFx/9PEF+CzBlDT5bhNEP0cS3AMvI8vdd/ohPkMhvAZZbA3d9C2ANXLcFsAbEtwDuquS3ANaA+BbAGpDfAlgD4lsAaxAh/8zXsr88v70Tsi9Vf41h1j+6Gfl+ll2AmQ+ooyRNlH/06y67AJXEqbZm976eEdcS8Qxw5jWoepRbhYgFOKNQnmGOuba4T4HOsAbu+scR+T3AzL/k8L/vDYh/PNHfA8z82z7/yj5L/kp/A9UCPCDBzDVw1/cQ7CE5SHwfg5LD67MA1iBZ/Fvf21HXbwEC7pYrvo5brmnk9VuAwmtwloA/em+PuH4BFAzBOd8RKFYu8luAyDUgvgWIlY78FiByDYhvAWLXgPwWIHINiC+AyBCI7wgUeywivwWIXAPiW4DYNSC/BYhcA+JbgNg1IL8FiFwD4lsAawABAAIABAAIABAAIABgVACX16fd24BELq9PuwWAIxAgAEAAQGAAHoSR+ABsAWABvAUQgGMQAo8/FgAW4KMygOp3fwsAC/BZIUDVu78FgAW4thSg2t3fAsAC3FoMUOXu/+kCiACV5XcEgiPQowUBZ737X70AIkBF+W86AokA1eS/+RlABKgk/10PwSJAFfnvCkAEqCL/3QGIABXkfygAEeDs8j8cgAhwZvm3bdu6yuv/N4aziN9tAawBzip/9wWwBjiL+MMDEALOcKo47MgiBKx4nD78zC4ErPQcOfWhVQyYIf0yAYiC7LP5DXPzPMB8HQvSAAAAAElFTkSuQmCC",
+            sizes: "192x192",
+            type: "image/png",
+            purpose: "any maskable"
+          }
+        ]
+      };
+      const blob = new Blob([JSON.stringify(manifestData)], { type: "application/manifest+json" });
+      const link = document.createElement("link");
+      link.rel = "manifest";
+      link.href = URL.createObjectURL(blob);
+      document.head.appendChild(link);
+    })();
+  </script>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter (Latin/Cyrillic) & Heebo (Hebrew support) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Heebo', 'sans-serif'],
+          },
+          colors: {
+            slate: {
+              850: '#151e2e',
+              925: '#0b1120',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.25);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(148, 163, 184, 0.45);
+    }
+
+    .task-row {
+      position: relative;
+      transition: background-color 0.15s ease, transform 0.15s ease;
+    }
+
+    /* Excel-style Fill Handle at bottom-right of a task cell/row */
+    .fill-handle {
+      position: absolute;
+      right: 6px;
+      bottom: 5px;
+      width: 13px;
+      height: 13px;
+      background-color: #10b981;
+      border: 2px solid #ffffff;
+      border-radius: 3px;
+      cursor: ns-resize;
+      opacity: 0;
+      transform: scale(0.85);
+      transition: opacity 0.15s ease, transform 0.15s ease, background-color 0.15s ease;
+      z-index: 20;
+      box-shadow: 0 2px 6px rgba(16, 185, 129, 0.45);
+    }
+    .dark .fill-handle {
+      border-color: #0f172a;
+    }
+    .task-row:hover .fill-handle,
+    .fill-handle.dragging-active {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .fill-handle:hover {
+      transform: scale(1.25) !important;
+      background-color: #059669;
+    }
+
+    /* Custom Checkbox Animation */
+    .custom-checkbox {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 0.4rem;
+      border: 2px solid #64748b;
+      display: grid;
+      place-content: center;
+      cursor: pointer;
+      transition: all 0.16s ease-in-out;
+      flex-shrink: 0;
+    }
+    .custom-checkbox::before {
+      content: "";
+      width: 0.65em;
+      height: 0.65em;
+      transform: scale(0);
+      transition: 120ms transform ease-in-out;
+      box-shadow: inset 1em 1em white;
+      transform-origin: center;
+      clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    }
+    .custom-checkbox:checked {
+      background-color: #10b981;
+      border-color: #10b981;
+    }
+    .custom-checkbox:checked::before {
+      transform: scale(1);
+    }
+
+    /* Inline inputs that blend in until hovered/focused */
+    .inline-edit-input {
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 0.4rem;
+      padding: 0.15rem 0.35rem;
+      transition: all 0.15s ease;
+    }
+    .inline-edit-input:hover {
+      border-color: rgba(148, 163, 184, 0.35);
+      background: rgba(148, 163, 184, 0.08);
+    }
+    .inline-edit-input:focus {
+      outline: none;
+      border-color: #6366f1;
+      background: rgba(99, 102, 241, 0.08);
+    }
+
+    @keyframes subtlePulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.65; }
+    }
+    .pulse-urgent {
+      animation: subtlePulse 2s infinite ease-in-out;
+    }
+  
+
+    /* Snappy UI Micro-Animations */
+    .modal-backdrop {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .modal-backdrop.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-panel {
+      transform: scale(0.95) translateY(8px);
+      opacity: 0;
+      transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .modal-backdrop.is-open .modal-panel {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+
+    /* Dropdown Menu Transition */
+    .dropdown-menu-anim {
+      opacity: 0;
+      transform: scale(0.95) translateY(-6px);
+      pointer-events: none;
+      transition: opacity 0.14s cubic-bezier(0.16, 1, 0.3, 1), transform 0.14s cubic-bezier(0.16, 1, 0.3, 1);
+      transform-origin: top right;
+    }
+    .dropdown-menu-anim.is-open {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      pointer-events: auto;
+    }
+
+    /* Task Row Completion & Deletion Animations */
+    .task-row {
+      position: relative;
+      transition: background-color 0.15s ease, transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease;
+      will-change: transform, opacity;
+    }
+    .task-row.completing-down {
+      transform: translateY(18px) scale(0.985);
+      opacity: 0;
+    }
+    .task-row.uncompleting-up {
+      transform: translateY(-14px) scale(0.985);
+      opacity: 0;
+    }
+    .task-row.deleting-out {
+      transform: translateX(20px) scale(0.96);
+      opacity: 0;
+    }
+
+    /* Toast Entrance & Exit */
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(10px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .toast-item {
+      animation: toastIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Auth state toggles */
+    #authenticatedActions { display: none !important; }
+    body.is-authenticated #authenticatedActions { display: flex !important; }
+    #loginGateScreen { display: flex !important; }
+    body.is-authenticated #loginGateScreen { display: none !important; }
+    #appMainContent { display: none !important; }
+    body.is-authenticated #appMainContent { display: block !important; }
+
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-925 text-slate-900 dark:text-slate-100 min-h-screen overflow-x-hidden max-w-full font-sans antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-200 select-none sm:select-auto">
+
+  <!-- Top Header -->
+  <header class="sticky top-0 z-30 w-full max-w-full backdrop-blur-md bg-white/85 dark:bg-slate-900/85 border-b border-slate-200/80 dark:border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-1.5 sm:gap-3">
+      <!-- Brand -->
+      <div class="flex items-center gap-2 sm:gap-3 min-w-0 flex-shrink-0">
+        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 flex-shrink-0">
+          <i data-lucide="graduation-cap" class="w-4 h-4 sm:w-6 sm:h-6"></i>
+        </div>
+        <h1 class="text-base sm:text-lg font-bold tracking-tight truncate">
+          UniTask
+        </h1>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-1.5 sm:gap-2.5 flex-shrink-0">
+        <!-- Authenticated Only Buttons -->
+        <div id="authenticatedActions" style="display: none;" class="flex items-center gap-1.5 sm:gap-2.5">
+          <!-- Drag Step Selector Pill (Desktop only) -->
+          <div class="hidden md:flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-200/70 dark:border-slate-700/70" title="How many days to add between tasks when dragging the fill handle">
+            <i data-lucide="calendar-plus" class="w-3.5 h-3.5 text-emerald-500"></i>
+            <span class="text-xs text-slate-500 dark:text-slate-400">Date Step:</span>
+            <select id="dragStepSelect" onchange="setDragDateStep(this.value)" class="bg-transparent text-xs font-semibold text-slate-800 dark:text-slate-200 focus:outline-none cursor-pointer">
+              <option value="7" class="bg-white dark:bg-slate-800">+7 days (Weekly)</option>
+              <option value="14" class="bg-white dark:bg-slate-800">+14 days (Bi-weekly)</option>
+              <option value="auto" class="bg-white dark:bg-slate-800">Match Duration</option>
+              <option value="0" class="bg-white dark:bg-slate-800">+0 days (Same date)</option>
+            </select>
+          </div>
+
+          <!-- Add Subject -->
+          <button onclick="openSubjectModal()" title="Add Subject" class="inline-flex items-center justify-center gap-1.5 p-2 sm:px-3 sm:py-2 rounded-xl text-xs sm:text-sm font-medium bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors">
+            <i data-lucide="folder-plus" class="w-4 h-4 text-indigo-500 flex-shrink-0"></i>
+            <span class="hidden sm:inline">+ Subject</span>
+          </button>
+
+          <!-- Add Task -->
+          <button onclick="openTaskModal()" title="Add Task" class="inline-flex items-center justify-center gap-1 px-2.5 py-2 sm:px-3.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white shadow-sm shadow-indigo-500/25 transition-all whitespace-nowrap">
+            <i data-lucide="plus" class="w-4 h-4 flex-shrink-0"></i>
+            <span>Task</span>
+          </button>
+
+          <!-- Data Backup Menu -->
+          <div class="relative" id="dataMenuContainer">
+            <button onclick="toggleDataMenu()" title="Export / Import Backup" class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-colors">
+              <i data-lucide="database" class="w-4 h-4"></i>
+            </button>
+            <div id="dataMenuDropdown" class="dropdown-menu-anim absolute right-0 mt-2 w-60 rounded-2xl bg-white dark:bg-slate-850 shadow-xl border border-slate-200 dark:border-slate-700/80 py-2 z-50">
+              <div class="px-3.5 py-1.5 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Backup & Restore</div>
+              <button onclick="exportData()" class="w-full px-3.5 py-2 text-left text-sm flex items-center gap-2.5 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200">
+                <i data-lucide="download" class="w-4 h-4 text-emerald-500"></i>
+                Export Backup (.json)
+              </button>
+              <label class="w-full px-3.5 py-2 text-left text-sm flex items-center gap-2.5 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 cursor-pointer">
+                <i data-lucide="upload" class="w-4 h-4 text-sky-500"></i>
+                Import Backup (.json)
+                <input type="file" id="importFileInput" accept=".json" class="hidden" onchange="importData(event)" />
+              </label>
+              <div class="my-1 border-t border-slate-200 dark:border-slate-700/80"></div>
+              <button onclick="restoreUserPreloadedData()" class="w-full px-3.5 py-2 text-left text-sm flex items-center gap-2.5 hover:bg-slate-100 dark:hover:bg-slate-800 text-indigo-600 dark:text-indigo-400 font-medium">
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                Restore My Saved Courses
+              </button>
+            </div>
+          </div>
+
+          <!-- Cloud Auth Button (Icon on mobile, Icon + username on desktop) -->
+          <button id="authBtn" onclick="handleAuthAction()" title="Account / Sign Out" class="inline-flex items-center justify-center gap-1.5 p-2 sm:px-3 sm:py-2 rounded-xl text-xs sm:text-sm font-medium bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800 transition-colors">
+            <i data-lucide="log-out" class="w-4 h-4 flex-shrink-0"></i>
+            <span id="authBtnLabel" class="hidden sm:inline">Sign Out</span>
+          </button>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button onclick="toggleTheme()" title="Toggle Light/Dark Mode" class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-colors flex-shrink-0">
+          <i data-lucide="sun" class="w-4 h-4 hidden dark:block text-amber-400"></i>
+          <i data-lucide="moon" class="w-4 h-4 block dark:hidden text-slate-700"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Protected Login Gate Screen -->
+  <div id="loginGateScreen" class="flex flex-col items-center justify-center min-h-[72vh] px-4 text-center">
+    <div class="p-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl max-w-sm w-full space-y-5">
+      <div class="w-16 h-16 mx-auto rounded-2xl bg-indigo-600/10 text-indigo-500 flex items-center justify-center">
+        <i data-lucide="lock" class="w-8 h-8"></i>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white">Private Access Only</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+          Access is restricted exclusively to the owner account.
+        </p>
+      </div>
+      <div id="authErrorBox" class="hidden p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-xs font-medium text-rose-600 dark:text-rose-400"></div>
+      <button onclick="handleAuthAction()" class="w-full py-3 px-4 rounded-xl text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-500/25 transition-all flex items-center justify-center gap-2">
+        <i data-lucide="log-in" class="w-4 h-4"></i>
+        <span>Sign In with Google</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Content (Hidden until authenticated) -->
+  <main id="appMainContent" style="display: none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+    <!-- KPI Stats Row -->
+    <section class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+      <div class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center justify-between shadow-sm">
+        <div>
+          <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Pending Tasks</p>
+          <p id="statPending" class="text-2xl sm:text-3xl font-bold mt-1 text-slate-900 dark:text-white">0</p>
+        </div>
+        <div class="w-11 h-11 rounded-xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center">
+          <i data-lucide="list-todo" class="w-6 h-6"></i>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center justify-between shadow-sm">
+        <div>
+          <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Urgent / Due Soon</p>
+          <p id="statUrgent" class="text-2xl sm:text-3xl font-bold mt-1 text-rose-500">0</p>
+        </div>
+        <div class="w-11 h-11 rounded-xl bg-rose-500/10 text-rose-500 flex items-center justify-center">
+          <i data-lucide="flame" class="w-6 h-6"></i>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex items-center justify-between shadow-sm">
+        <div>
+          <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Completed</p>
+          <p id="statCompleted" class="text-2xl sm:text-3xl font-bold mt-1 text-emerald-500">0</p>
+        </div>
+        <div class="w-11 h-11 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
+          <i data-lucide="check-circle-2" class="w-6 h-6"></i>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 flex flex-col justify-between shadow-sm">
+        <div class="flex items-center justify-between">
+          <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Semester Progress</p>
+          <span id="statPercent" class="text-sm font-bold text-indigo-500">0%</span>
+        </div>
+        <div class="w-full h-2.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mt-3">
+          <div id="statProgressBar" class="h-full bg-gradient-to-r from-indigo-500 to-emerald-500 rounded-full transition-all duration-500" style="width: 0%"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subject Tabs & Sorting Controls -->
+    <section class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-3 sm:p-4 shadow-sm flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
+      <!-- Subject Filter Tabs (All + Each Subject) -->
+      <div id="subjectTabsBar" class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0"></div>
+
+      <!-- Right Controls: Sort -->
+      <div class="flex flex-wrap items-center gap-2">
+        <!-- Sort Select -->
+        <div class="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-xl">
+          <i data-lucide="arrow-up-down" class="w-3.5 h-3.5 text-slate-400"></i>
+          <select id="sortSelect" onchange="handleSortChange(this.value)" class="bg-transparent text-xs font-semibold text-slate-800 dark:text-slate-200 focus:outline-none cursor-pointer">
+            <option value="due-asc" class="bg-white dark:bg-slate-800">Due Date (Earliest First)</option>
+            <option value="due-desc" class="bg-white dark:bg-slate-800">Due Date (Latest First)</option>
+            <option value="urgency-desc" class="bg-white dark:bg-slate-800">Urgency % (Highest First)</option>
+            <option value="title-asc" class="bg-white dark:bg-slate-800">Task Name (Natural 1, 2, 3...)</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Workspace Area -->
+    <div id="workspaceGrid" class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+      <!-- LEFT / MAIN: Unified All Tasks Table (Only visible on 'All Courses' tab) -->
+      <section id="masterSection" class="lg:col-span-6 bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden flex flex-col">
+        <div class="p-4 sm:px-5 border-b border-slate-200/80 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-850/60">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-500 flex items-center justify-center">
+              <i data-lucide="layers" class="w-4 h-4"></i>
+            </div>
+            <h2 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span id="masterHeaderTitle">All Tasks (הכל)</span>
+              <span id="masterCountBadge" class="text-xs font-semibold px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">0</span>
+            </h2>
+          </div>
+          <button onclick="openTaskModal()" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-600 dark:text-indigo-400 transition-colors flex items-center gap-1">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            <span>Add</span>
+          </button>
+        </div>
+
+        <div id="masterTasksList" class="divide-y divide-slate-100 dark:divide-slate-800/70"></div>
+      </section>
+
+      <!-- RIGHT / SINGLE VIEW: Individual Subject Boards -->
+      <section id="subjectsSection" class="lg:col-span-6 grid grid-cols-1 gap-5"></section>
+
+    </div>
+
+  </main>
+
+  <!-- FLOATING EXCEL DRAG-TO-FILL GHOST OVERLAY -->
+  <div id="dragGhostOverlay" class="fixed z-50 hidden pointer-events-none bg-slate-900/95 dark:bg-slate-800/95 text-white border-2 border-emerald-500 rounded-2xl p-3.5 shadow-2xl max-w-xs backdrop-blur-md">
+    <div class="flex items-center justify-between gap-3 pb-2 border-b border-slate-700">
+      <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+        <i data-lucide="copy-plus" class="w-3.5 h-3.5"></i>
+        Auto-Fill Series
+      </span>
+      <span id="dragGhostCountBadge" class="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-500 text-slate-950">+0 tasks</span>
+    </div>
+    <div id="dragGhostList" class="mt-2 space-y-1 text-xs max-h-48 overflow-hidden"></div>
+    <div class="mt-2 pt-1.5 border-t border-slate-700/80 text-[11px] text-slate-400 flex items-center justify-between">
+      <span>Release mouse to create</span>
+      <span id="dragGhostStepInfo" class="text-emerald-300 font-medium">+7d step</span>
+    </div>
+  </div>
+
+  <!-- MODAL: Add / Edit Subject -->
+  <div id="subjectModal" onclick="if(event.target === this) closeSubjectModal()" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm">
+    <div class="modal-panel bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
+        <h3 id="subjectModalTitle" class="text-lg font-bold text-slate-900 dark:text-white">New Subject</h3>
+        <button onclick="closeSubjectModal()" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form onsubmit="saveSubject(event)" class="mt-4 space-y-4">
+        <input type="hidden" id="subjectIdInput" />
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
+            Subject Name (שם הקורס / מקצוע)
+          </label>
+          <input
+            type="text"
+            id="subjectNameInput"
+            required
+            dir="auto"
+            placeholder="e.g., מבנה מערכות הפעלה"
+            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+            Color Theme
+          </label>
+          <div id="colorSwatches" class="grid grid-cols-4 gap-2.5"></div>
+        </div>
+
+        <div class="flex items-center justify-end gap-2.5 pt-3 border-t border-slate-200 dark:border-slate-800">
+          <button type="button" onclick="closeSubjectModal()" class="px-4 py-2 rounded-xl text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white">Save Subject</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: Add Task / Batch Series Generator -->
+  <div id="taskModal" onclick="if(event.target === this) closeTaskModal()" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm">
+    <div class="modal-panel bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
+        <h3 id="taskModalTitle" class="text-lg font-bold text-slate-900 dark:text-white">Add Homework Task</h3>
+        <button onclick="closeTaskModal()" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form onsubmit="saveTask(event)" class="mt-4 space-y-4">
+        <input type="hidden" id="taskIdInput" />
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <!-- Subject -->
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
+              Subject (מקצוע)
+            </label>
+            <select
+              id="taskSubjectSelect"
+              required
+              dir="auto"
+              class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            ></select>
+          </div>
+
+          <!-- Task Title -->
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
+              Task Title (e.g., יבש 1)
+            </label>
+            <input
+              type="text"
+              id="taskTitleInput"
+              required
+              dir="auto"
+              oninput="updateSeriesPreview()"
+              placeholder="e.g., יבש 1 / גיליון 1"
+              class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <!-- First Due Date -->
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
+              Due Date (תאריך הגשה)
+            </label>
+            <input
+              type="date"
+              id="taskDueDateInput"
+              required
+              onchange="updateSeriesPreview()"
+              class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
+
+          <!-- Duration / Allocated Days -->
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
+              Allocated Days (זמן שהוקצה)
+            </label>
+            <input
+              type="number"
+              id="taskDurationInput"
+              min="1"
+              max="365"
+              value="14"
+              required
+              oninput="updateSeriesPreview()"
+              class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
+        </div>
+
+        <!-- Batch Series Generator Toggle Box -->
+        <div id="seriesGeneratorWrapper" class="p-3.5 rounded-2xl bg-emerald-500/5 border border-emerald-500/25 space-y-3">
+          <label class="flex items-center justify-between cursor-pointer">
+            <span class="flex items-center gap-2 text-xs sm:text-sm font-semibold text-emerald-700 dark:text-emerald-400">
+              <i data-lucide="copy-plus" class="w-4 h-4"></i>
+              Generate Multiple Sequential Tasks (יבש 1, 2, 3...)
+            </span>
+            <input type="checkbox" id="batchSeriesToggle" onchange="toggleBatchSeriesMode()" class="custom-checkbox" />
+          </label>
+
+          <div id="batchSeriesControls" class="hidden pt-2 border-t border-emerald-500/20 space-y-3">
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-[11px] font-semibold uppercase text-slate-500 dark:text-slate-400 mb-1">
+                  How Many Tasks? (Count)
+                </label>
+                <input
+                  type="number"
+                  id="batchCountInput"
+                  min="2"
+                  max="30"
+                  value="5"
+                  oninput="updateSeriesPreview()"
+                  class="w-full px-3 py-1.5 text-sm rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
+                />
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold uppercase text-slate-500 dark:text-slate-400 mb-1">
+                  Days Between Deadlines
+                </label>
+                <input
+                  type="number"
+                  id="batchIntervalInput"
+                  min="0"
+                  max="90"
+                  value="14"
+                  oninput="updateSeriesPreview()"
+                  class="w-full px-3 py-1.5 text-sm rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
+                />
+              </div>
+            </div>
+            <!-- Live Preview Pills -->
+            <div>
+              <div class="text-[11px] font-medium text-slate-500 dark:text-slate-400 mb-1.5">Series Preview:</div>
+              <div id="batchPreviewPills" class="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-end gap-2.5 pt-3 border-t border-slate-200 dark:border-slate-800">
+          <button type="button" onclick="closeTaskModal()" class="px-4 py-2 rounded-xl text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: Confirmation -->
+  <div id="confirmModal" onclick="if(event.target === this) closeConfirmModal()" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm">
+    <div class="modal-panel bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-sm w-full p-6 shadow-2xl">
+      <h3 id="confirmModalTitle" class="text-lg font-bold text-slate-900 dark:text-white">Confirm</h3>
+      <p id="confirmModalDesc" class="text-sm text-slate-500 dark:text-slate-400 mt-1.5"></p>
+      <div class="flex items-center justify-end gap-2.5 mt-6">
+        <button onclick="closeConfirmModal()" class="px-4 py-2 rounded-xl text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Cancel</button>
+        <button id="confirmModalActionBtn" class="px-4 py-2 rounded-xl text-sm font-semibold bg-rose-600 hover:bg-rose-500 text-white">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <script>
+    // ============================================================================
+    // 1. PRELOADED USER DATA (From unitask_backup_2026-10-31.json)
+    // ============================================================================
+    const STORAGE_KEY = 'unitask_tracker_v2';
+
+    const COLOR_THEMES = [
+      { name: "Pastel Blue",   bg: "#e0f2fe", border: "#7dd3fc", text: "#075985", bar: "#0284c7", raw: "#cfe2f3" },
+      { name: "Pastel Red",    bg: "#fee2e2", border: "#fca5a5", text: "#991b1b", bar: "#ef4444", raw: "#ea9999" },
+      { name: "Pastel Green",  bg: "#dcfce7", border: "#86efac", text: "#166534", bar: "#22c55e", raw: "#d9ead3" },
+      { name: "Pastel Purple", bg: "#f3e8ff", border: "#d8b4fe", text: "#6b21a8", bar: "#9333ea", raw: "#d9d2e9" },
+      { name: "Pastel Amber",  bg: "#fef3c7", border: "#fcd34d", text: "#92400e", bar: "#f59e0b", raw: "#ffe599" },
+      { name: "Pastel Pink",   bg: "#fce7f3", border: "#f9a8d4", text: "#9d174d", bar: "#ec4899", raw: "#ead1dc" },
+      { name: "Pastel Teal",   bg: "#ccfbf1", border: "#5eead4", text: "#115e59", bar: "#14b8a6", raw: "#a2c4c9" },
+      { name: "Pastel Indigo", bg: "#e0e7ff", border: "#a5b4fc", text: "#3730a3", bar: "#6366f1", raw: "#b4a7d6" }
+    ];
+
+    const USER_BACKUP_DATA = {
+  "activeTab": "all",
+  "sortBy": "due-asc",
+  "subjects": [
+    {
+      "id": "sub_1793465557190",
+      "name": "מבנה מערכות הפעלה",
+      "color": {
+        "bg": "#e0f2fe",
+        "border": "#7dd3fc",
+        "text": "#075985",
+        "bar": "#0284c7",
+        "raw": "#cfe2f3",
+        "name": "Pastel Blue"
+      }
+    },
+    {
+      "id": "sub_1793465823066",
+      "name": "מבנה מחשבים",
+      "color": {
+        "bg": "#fee2e2",
+        "border": "#fca5a5",
+        "text": "#991b1b",
+        "bar": "#ef4444",
+        "raw": "#ea9999",
+        "name": "Pastel Red"
+      }
+    },
+    {
+      "id": "sub_1793467332361",
+      "name": "מעגלים אלקטרוניים",
+      "color": {
+        "name": "Pastel Green",
+        "bg": "#dcfce7",
+        "border": "#86efac",
+        "text": "#166534",
+        "bar": "#22c55e",
+        "raw": "#d9ead3"
+      }
+    },
+    {
+      "id": "sub_1793467520333",
+      "name": "רשתות מחשבים ואינטרנט 1",
+      "color": {
+        "name": "Pastel Purple",
+        "bg": "#f3e8ff",
+        "border": "#d8b4fe",
+        "text": "#6b21a8",
+        "bar": "#9333ea",
+        "raw": "#d9d2e9"
+      }
+    },
+    {
+      "id": "sub_1793467548454",
+      "name": "כלי AI גנרטיביים",
+      "color": {
+        "name": "Pastel Amber",
+        "bg": "#fef3c7",
+        "border": "#fcd34d",
+        "text": "#92400e",
+        "bar": "#f59e0b",
+        "raw": "#ffe599"
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task_1793465571600",
+      "subjectId": "sub_1793465557190",
+      "title": "יבש 1",
+      "dueDate": "2026-11-19",
+      "duration": 14,
+      "completed": false
+    },
+    {
+      "id": "task_1793465699785",
+      "subjectId": "sub_1793465557190",
+      "title": "יבש 2",
+      "dueDate": "2026-12-17",
+      "duration": 14,
+      "completed": false
+    },
+    {
+      "id": "task_1793465718705",
+      "subjectId": "sub_1793465557190",
+      "title": "יבש 3",
+      "dueDate": "2026-12-31",
+      "duration": 14,
+      "completed": false
+    },
+    {
+      "id": "task_1793465779039",
+      "subjectId": "sub_1793465557190",
+      "title": "יבש 4",
+      "dueDate": "2027-01-14",
+      "duration": 14,
+      "completed": false
+    },
+    {
+      "id": "task_1793465798088",
+      "subjectId": "sub_1793465557190",
+      "title": "יבש 5",
+      "dueDate": "2027-01-21",
+      "duration": 14,
+      "completed": false
+    },
+    {
+      "id": "task_1793467361765_0_c3d",
+      "subjectId": "sub_1793467332361",
+      "title": "שיעורי בית 1",
+      "dueDate": "2026-11-08",
+      "duration": 7,
+      "completed": true
+    },
+    {
+      "id": "task_1793467361765_1_t3s",
+      "subjectId": "sub_1793467332361",
+      "title": "שיעורי בית 2",
+      "dueDate": "2026-11-15",
+      "duration": 7,
+      "completed": false
+    },
+    {
+      "id": "task_1793467361765_2_sxq",
+      "subjectId": "sub_1793467332361",
+      "title": "שיעורי בית 3",
+      "dueDate": "2026-11-22",
+      "duration": 7,
+      "completed": false
+    },
+    {
+      "id": "task_1793467361765_3_lvh",
+      "subjectId": "sub_1793467332361",
+      "title": "שיעורי בית 4",
+      "dueDate": "2026-11-29",
+      "duration": 7,
+      "completed": false
+    },
+    {
+      "id": "task_1793467361765_4_6dd",
+      "subjectId": "sub_1793467332361",
+      "title": "שיעורי בית 5",
+      "dueDate": "2026-12-06",
+      "duration": 7,
+      "completed": false
+    },
+    {
+      "id": "task_1793467361765_5_p8x",
+      "subjectId": "sub_1793467332361",
+      "title": "שיעורי בית 6",
+      "dueDate": "2026-12-13",
+      "duration": 7,
+      "completed": false
+    },
+    {
+      "id": "task_1793467361765_6_t3v",
+      "subjectId": "sub_1793467332361",
+      "title": "שיעורי בית 7",
+      "dueDate": "2026-12-20",
+      "duration": 7,
+      "completed": false
+    },
+    {
+      "id": "task_1793467361765_7_r44",
+      "subjectId": "sub_1793467332361",
+      "title": "שיעורי בית 8",
+      "dueDate": "2026-12-27",
+      "duration": 7,
+      "completed": false
+    },
+    {
+      "id": "task_1793467361765_8_cq3",
+      "subjectId": "sub_1793467332361",
+      "title": "שיעורי בית 9",
+      "dueDate": "2027-01-03",
+      "duration": 7,
+      "completed": false
+    },
+    {
+      "id": "task_1793467361765_9_r36",
+      "subjectId": "sub_1793467332361",
+      "title": "שיעורי בית 10",
+      "dueDate": "2027-01-10",
+      "duration": 7,
+      "completed": false
+    },
+    {
+      "id": "task_1793467361765_10_jgb",
+      "subjectId": "sub_1793467332361",
+      "title": "שיעורי בית 11",
+      "dueDate": "2027-01-17",
+      "duration": 7,
+      "completed": false
+    },
+    {
+      "id": "task_1793467361765_11_v95",
+      "subjectId": "sub_1793467332361",
+      "title": "שיעורי בית 12",
+      "dueDate": "2027-01-24",
+      "duration": 7,
+      "completed": false
+    },
+    {
+      "id": "task_1793467400768_0_gfv",
+      "subjectId": "sub_1793467332361",
+      "title": "הכנה 1",
+      "dueDate": "2026-11-01",
+      "duration": 7,
+      "completed": true
+    },
+    {
+      "id": "task_1793467400768_1_mvz",
+      "subjectId": "sub_1793467332361",
+      "title": "הכנה 2",
+      "dueDate": "2026-11-08",
+      "duration": 7,
+      "completed": true
+    },
+    {
+      "id": "task_1793467400768_2_t0i",
+      "subjectId": "sub_1793467332361",
+      "title": "הכנה 3",
+      "dueDate": "2026-11-15",
+      "duration": 7,
+      "completed": false
+    },
+    {
+      "id": "task_1793467400768_3_6xy",
+      "subjectId": "sub_1793467332361",
+      "title": "הכנה 4",
+      "dueDate": "2026-11-22",
+      "duration": 7,
+      "completed": false
+    },
+    {
+      "id": "task_1793467400768_4_wlu",
+      "subjectId": "sub_1793467332361",
+      "title": "הכנה 5",
+      "dueDate": "2026-11-29",
+      "duration": 7,
+      "completed": false
+    },
+    {
+      "id": "task_1793467400768_5_duv",
+      "subjectId": "sub_1793467332361",
+      "title": "הכנה 6",
+      "dueDate": "2026-12-06",
+      "duration": 7,
+      "completed": false
+    },
+    {
+      "id": "task_1793467400768_6_s23",
+      "subjectId": "sub_1793467332361",
+      "title": "הכנה 7",
+      "dueDate": "2026-12-13",
+      "duration": 7,
+      "completed": false
+    },
+    {
+      "id": "task_1793467400768_7_zwt",
+      "subjectId": "sub_1793467332361",
+      "title": "הכנה 8",
+      "dueDate": "2026-12-20",
+      "duration": 7,
+      "completed": false
+    },
+    {
+      "id": "task_1793467400768_8_x3f",
+      "subjectId": "sub_1793467332361",
+      "title": "הכנה 9",
+      "dueDate": "2026-12-27",
+      "duration": 7,
+      "completed": false
+    },
+    {
+      "id": "task_1793467400768_9_hfp",
+      "subjectId": "sub_1793467332361",
+      "title": "הכנה 10",
+      "dueDate": "2027-01-03",
+      "duration": 7,
+      "completed": false
+    },
+    {
+      "id": "task_1793467400768_10_mg5",
+      "subjectId": "sub_1793467332361",
+      "title": "הכנה 11",
+      "dueDate": "2027-01-10",
+      "duration": 7,
+      "completed": false
+    },
+    {
+      "id": "task_1793467400768_11_fbn",
+      "subjectId": "sub_1793467332361",
+      "title": "הכנה 12",
+      "dueDate": "2027-01-17",
+      "duration": 7,
+      "completed": false
+    },
+    {
+      "id": "task_1793467400768_12_ul6",
+      "subjectId": "sub_1793467332361",
+      "title": "הכנה 13",
+      "dueDate": "2027-01-24",
+      "duration": 7,
+      "completed": false
+    }
+  ]
+};
+
+    // ============================================================================
+    // FIREBASE CONFIGURATION (Paste your config from Firebase Console here)
+    // ============================================================================
+    const firebaseConfig = {
+      apiKey: "AIzaSyBQ_ipuMfnRRzZ30hRai1ppEMRxk2R6D_A",
+      authDomain: "unitask-a9204.firebaseapp.com",
+      projectId: "unitask-a9204",
+      storageBucket: "unitask-a9204.firebasestorage.app",
+      messagingSenderId: "7028124679",
+      appId: "1:7028124679:web:c55d653819f5423d6a0ea2"
+    };
+
+    // SHA-256 hash of the owner's email so the plain-text email address is never exposed in source code
+    const ALLOWED_EMAIL_SHA256 = "ab388e46e45e562e276d444dcbb033e58d162647400856d6e4836260d4d08d05";
+    let currentUser = null;
+    let isOwnerVerified = false;
+    let auth = null;
+    let db = null;
+    let unsubscribeSnapshot = null;
+
+    try {
+      if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
+        firebase.initializeApp(firebaseConfig);
+        auth = firebase.auth();
+        db = firebase.firestore();
+      }
+    } catch (e) {
+      console.warn("Firebase initialization warning:", e);
+    }
+
+    let state = {
+      activeTab: 'all',
+      sortBy: 'due-asc',
+      viewMode: 'split',
+      dragDateStep: '7', // '7' | '14' | 'auto' | '0'
+      theme: 'dark',
+      subjects: [],
+      tasks: []
+    };
+
+    // ============================================================================
+    // 2. INITIALIZATION & STORAGE NORMALIZATION
+    // ============================================================================
+    function initApp() {
+      loadThemeOnly();
+      applyTheme();
+      renderColorSwatches();
+      initDragToFillListeners();
+      initCloudAuth();
+
+      document.addEventListener('click', (e) => {
+        const container = document.getElementById('dataMenuContainer');
+        const dropdown = document.getElementById('dataMenuDropdown');
+        if (container && dropdown && !container.contains(e.target)) {
+          dropdown.classList.remove('is-open');
+        }
+      });
+    }
+
+    async function sha256Hex(str) {
+      const normalized = String(str || '').trim().toLowerCase();
+      const buf = new TextEncoder().encode(normalized);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', buf);
+      return Array.from(new Uint8Array(hashBuffer))
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join('');
+    }
+
+    async function verifyUserEmailHash(user) {
+      if (!user || !user.email) return false;
+      try {
+        const hash = await sha256Hex(user.email);
+        return hash === ALLOWED_EMAIL_SHA256;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function normalizeSubjectColor(colorProp, index = 0) {
+      if (colorProp && typeof colorProp === 'object' && colorProp.bar) {
+        return colorProp;
+      }
+      if (typeof colorProp === 'string') {
+        return {
+          bg: colorProp + '22',
+          border: colorProp + '66',
+          text: colorProp,
+          bar: colorProp,
+          raw: colorProp,
+          name: 'Custom'
+        };
+      }
+      return COLOR_THEMES[index % COLOR_THEMES.length];
+    }
+
+    function normalizeTask(t) {
+      return {
+        id: t.id || ('task_' + Date.now() + Math.random().toString(36).slice(2, 6)),
+        subjectId: t.subjectId,
+        title: t.title || 'Untitled',
+        dueDate: t.dueDate || '2026-11-19',
+        duration: Number(t.duration ?? t.allocatedDays ?? 14),
+        completed: Boolean(t.completed)
+      };
+    }
+
+    function loadThemeOnly() {
+      try {
+        const savedTheme = localStorage.getItem('unitask_theme');
+        if (savedTheme === 'light' || savedTheme === 'dark') {
+          state.theme = savedTheme;
+        }
+      } catch (e) {}
+    }
+
+    function loadAuthorizedLocalCache() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed.subjects) && parsed.subjects.length > 0) {
+            state.subjects = parsed.subjects.map((s, i) => ({
+              ...s,
+              color: normalizeSubjectColor(s.color, i)
+            }));
+            state.tasks = (parsed.tasks || []).map(normalizeTask);
+            state.activeTab = parsed.activeTab || 'all';
+            state.sortBy = parsed.sortBy || 'due-asc';
+            state.viewMode = parsed.viewMode || 'split';
+            state.dragDateStep = parsed.dragDateStep || '7';
+            return;
+          }
+        }
+      } catch (e) {
+        console.error('Error loading cached state:', e);
+      }
+
+      // Fallback to owner's preloaded courses only for authorized owner
+      state.subjects = USER_BACKUP_DATA.subjects.map((s, i) => ({
+        ...s,
+        color: normalizeSubjectColor(s.color, i)
+      }));
+      state.tasks = USER_BACKUP_DATA.tasks.map(normalizeTask);
+    }
+
+    function isAuthorizedUser(user) {
+      return Boolean(user && isOwnerVerified && currentUser && user.uid === currentUser.uid);
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem('unitask_theme', state.theme);
+      } catch (e) {}
+
+      if (!isAuthorizedUser(currentUser)) return;
+
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {
+        console.error('Error saving state:', e);
+      }
+
+      if (db) {
+        db.collection('users').doc(currentUser.uid).set({
+          subjects: state.subjects,
+          tasks: state.tasks,
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        }, { merge: true }).catch(err => console.error("Cloud sync save error:", err));
+      }
+    }
+
+    function initCloudAuth() {
+      if (!auth) return;
+      auth.onAuthStateChanged(async user => {
+        const btnLabel = document.getElementById('authBtnLabel');
+        const loginGate = document.getElementById('loginGateScreen');
+        const mainContent = document.getElementById('appMainContent');
+        const authActions = document.getElementById('authenticatedActions');
+        const errorBox = document.getElementById('authErrorBox');
+
+        if (unsubscribeSnapshot) {
+          unsubscribeSnapshot();
+          unsubscribeSnapshot = null;
+        }
+
+        if (!user) {
+          currentUser = null;
+          isOwnerVerified = false;
+          state.subjects = [];
+          state.tasks = [];
+          document.body.classList.remove('is-authenticated');
+          if (loginGate) loginGate.style.display = 'flex';
+          if (mainContent) mainContent.style.display = 'none';
+          if (authActions) authActions.style.display = 'none';
+          if (btnLabel) btnLabel.textContent = 'Sign Out';
+          lucide.createIcons();
+          return;
+        }
+
+        const matchesOwner = await verifyUserEmailHash(user);
+
+        // Reject any unauthorized Google account without revealing the owner's email
+        if (!matchesOwner) {
+          currentUser = null;
+          isOwnerVerified = false;
+          state.subjects = [];
+          state.tasks = [];
+          document.body.classList.remove('is-authenticated');
+          if (loginGate) loginGate.style.display = 'flex';
+          if (mainContent) mainContent.style.display = 'none';
+          if (authActions) authActions.style.display = 'none';
+          if (errorBox) {
+            errorBox.textContent = 'Access denied. This account does not have permission to access this workspace.';
+            errorBox.classList.remove('hidden');
+          }
+          auth.signOut();
+          lucide.createIcons();
+          return;
+        }
+
+        currentUser = user;
+        isOwnerVerified = true;
+        if (errorBox) errorBox.classList.add('hidden');
+        document.body.classList.add('is-authenticated');
+        if (loginGate) loginGate.style.display = 'none';
+        if (mainContent) mainContent.style.display = 'block';
+        if (authActions) authActions.style.display = 'flex';
+        if (btnLabel) btnLabel.textContent = user.email.split('@')[0];
+
+        loadAuthorizedLocalCache();
+        renderAll();
+        showToast(`Signed in: ${user.email}`);
+
+        unsubscribeSnapshot = db.collection('users').doc(user.uid).onSnapshot(doc => {
+          if (doc.exists) {
+            const data = doc.data();
+            if (Array.isArray(data.subjects) && Array.isArray(data.tasks)) {
+              state.subjects = data.subjects.map((s, i) => ({
+                ...s,
+                color: normalizeSubjectColor(s.color, i)
+              }));
+              state.tasks = data.tasks.map(normalizeTask);
+              renderAll();
+            }
+          } else {
+            saveState();
+          }
+        }, err => {
+          console.error("Firestore read error:", err);
+        });
+
+        lucide.createIcons();
+      });
+    }
+
+    function handleAuthAction() {
+      if (!auth) {
+        alert("Firebase Auth is not initialized.");
+        return;
+      }
+      if (currentUser) {
+        if (confirm(`Signed in as ${currentUser.email}. Sign out?`)) {
+          auth.signOut().then(() => showToast("Signed out."));
+        }
+      } else {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        provider.setCustomParameters({ prompt: 'select_account' });
+        auth.signInWithPopup(provider).catch(err => alert("Sign in error: " + err.message));
+      }
+    }
+
+    function restoreUserPreloadedData() {
+      document.getElementById('dataMenuDropdown').classList.remove('is-open');
+      state.subjects = JSON.parse(JSON.stringify(USER_BACKUP_DATA.subjects));
+      state.tasks = JSON.parse(JSON.stringify(USER_BACKUP_DATA.tasks));
+      state.activeTab = 'all';
+      saveState();
+      renderAll();
+      showToast('Restored your saved courses & tasks!');
+    }
+
+    // ============================================================================
+    // 3. TITLE NUMBER INCREMENTER & DATE STEP HELPERS (Excel Series Logic)
+    // ============================================================================
+    /**
+     * Given a base title like "יבש 1" or "WB 3" or "גיליון", and an offset (1, 2, 3...),
+     * increments the last number found in the title, or appends the number if none exists.
+     */
+    function incrementTaskTitle(baseTitle, stepOffset) {
+      const trimmed = String(baseTitle).trim();
+      // Match the last integer in the string
+      const regex = /^(.*?)(\d+)(\D*)$/;
+      const match = trimmed.match(regex);
+      if (match) {
+        const prefix = match[1];
+        const startNum = parseInt(match[2], 10);
+        const suffix = match[3];
+        return `${prefix}${startNum + stepOffset}${suffix}`;
+      }
+      // If no number in title, append " 2", " 3"...
+      return `${trimmed} ${1 + stepOffset}`;
+    }
+
+    function addDaysToDateString(dateStr, daysToAdd) {
+      const [y, m, d] = dateStr.split('-').map(Number);
+      const dt = new Date(y, m - 1, d);
+      dt.setDate(dt.getDate() + Number(daysToAdd));
+      const yyyy = dt.getFullYear();
+      const mm = String(dt.getMonth() + 1).padStart(2, '0');
+      const dd = String(dt.getDate()).padStart(2, '0');
+      return `${yyyy}-${mm}-${dd}`;
+    }
+
+    function getStepDaysForTask(task) {
+      if (state.dragDateStep === 'auto') {
+        return Number(task.duration) || 14;
+      }
+      return Number(state.dragDateStep ?? 7);
+    }
+
+    // ============================================================================
+    // 4. EXCEL-STYLE DRAG-TO-FILL ENGINE
+    // ============================================================================
+    let dragFillState = {
+      active: false,
+      sourceTask: null,
+      startY: 0,
+      countToGenerate: 0
+    };
+
+    function initDragToFillListeners() {
+      window.addEventListener('mousemove', onGlobalDragMove);
+      window.addEventListener('mouseup', onGlobalDragEnd);
+      window.addEventListener('touchmove', (e) => {
+        if (dragFillState.active && e.touches[0]) {
+          onGlobalDragMove({ clientX: e.touches[0].clientX, clientY: e.touches[0].clientY });
+        }
+      }, { passive: false });
+      window.addEventListener('touchend', onGlobalDragEnd);
+    }
+
+    function startFillDrag(event, taskId) {
+      event.stopPropagation();
+      event.preventDefault();
+      const task = state.tasks.find(t => t.id === taskId);
+      if (!task) return;
+
+      const clientY = event.touches ? event.touches[0].clientY : event.clientY;
+      const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+
+      dragFillState = {
+        active: true,
+        sourceTask: task,
+        startY: clientY,
+        countToGenerate: 1
+      };
+
+      document.body.style.userSelect = 'none';
+      document.body.style.cursor = 'ns-resize';
+
+      updateDragGhostUI(clientX, clientY);
+    }
+
+    function onGlobalDragMove(e) {
+      if (!dragFillState.active || !dragFillState.sourceTask) return;
+      const deltaY = e.clientY - dragFillState.startY;
+      // Every 34px of downward drag adds +1 task in the series (up to 25 at once)
+      const count = Math.max(0, Math.min(25, Math.floor(deltaY / 32) + 1));
+      dragFillState.countToGenerate = count;
+      updateDragGhostUI(e.clientX, e.clientY);
+    }
+
+    function updateDragGhostUI(clientX, clientY) {
+      const overlay = document.getElementById('dragGhostOverlay');
+      const badge = document.getElementById('dragGhostCountBadge');
+      const list = document.getElementById('dragGhostList');
+      const stepInfo = document.getElementById('dragGhostStepInfo');
+
+      const task = dragFillState.sourceTask;
+      const count = dragFillState.countToGenerate;
+      const stepDays = getStepDaysForTask(task);
+
+      overlay.classList.remove('hidden');
+      // Position floating preview near cursor
+      const leftPos = Math.min(window.innerWidth - 290, Math.max(16, clientX + 18));
+      const topPos = Math.min(window.innerHeight - 240, Math.max(16, clientY - 10));
+      overlay.style.left = `${leftPos}px`;
+      overlay.style.top = `${topPos}px`;
+
+      badge.textContent = count > 0 ? `+${count} task${count > 1 ? 's' : ''}` : 'Cancel (0)';
+      stepInfo.textContent = stepDays > 0 ? `+${stepDays}d per task` : 'Same due date';
+
+      if (count <= 0) {
+        list.innerHTML = `<div class="text-slate-400 italic">Drag further down to add tasks...</div>`;
+        return;
+      }
+
+      let previewHtml = '';
+      const maxPreviewRows = 6;
+      for (let i = 1; i <= Math.min(count, maxPreviewRows); i++) {
+        const nextTitle = incrementTaskTitle(task.title, i);
+        const nextDate = addDaysToDateString(task.dueDate, stepDays * i);
+        previewHtml += `
+          <div class="flex items-center justify-between gap-3 py-0.5 px-2 rounded bg-slate-800/90 border border-slate-700/70">
+            <span dir="auto" class="font-semibold text-emerald-300 truncate">${escapeHtml(nextTitle)}</span>
+            <span class="text-[11px] text-slate-300 font-mono">${formatDisplayDate(nextDate)}</span>
+          </div>
+        `;
+      }
+      if (count > maxPreviewRows) {
+        const lastTitle = incrementTaskTitle(task.title, count);
+        const lastDate = addDaysToDateString(task.dueDate, stepDays * count);
+        previewHtml += `
+          <div class="text-center text-[10px] text-slate-400">⋮ (+${count - maxPreviewRows} more)</div>
+          <div class="flex items-center justify-between gap-3 py-0.5 px-2 rounded bg-slate-800/90 border border-emerald-500/40">
+            <span dir="auto" class="font-semibold text-emerald-300 truncate">${escapeHtml(lastTitle)}</span>
+            <span class="text-[11px] text-slate-300 font-mono">${formatDisplayDate(lastDate)}</span>
+          </div>
+        `;
+      }
+      list.innerHTML = previewHtml;
+    }
+
+    function onGlobalDragEnd() {
+      if (!dragFillState.active) return;
+
+      const { sourceTask, countToGenerate } = dragFillState;
+      dragFillState.active = false;
+      document.body.style.userSelect = '';
+      document.body.style.cursor = '';
+      document.getElementById('dragGhostOverlay').classList.add('hidden');
+
+      if (sourceTask && countToGenerate > 0) {
+        const stepDays = getStepDaysForTask(sourceTask);
+        const createdTitles = [];
+
+        for (let i = 1; i <= countToGenerate; i++) {
+          const newTitle = incrementTaskTitle(sourceTask.title, i);
+          const newDueDate = addDaysToDateString(sourceTask.dueDate, stepDays * i);
+          state.tasks.push({
+            id: 'task_' + Date.now() + '_' + i + '_' + Math.random().toString(36).slice(2, 5),
+            subjectId: sourceTask.subjectId,
+            title: newTitle,
+            dueDate: newDueDate,
+            duration: sourceTask.duration,
+            completed: false
+          });
+          createdTitles.push(newTitle);
+        }
+
+        saveState();
+        renderAll();
+        showToast(`Auto-filled ${countToGenerate} task(s): ${createdTitles[0]} → ${createdTitles[createdTitles.length - 1]}`);
+      }
+    }
+
+    function setDragDateStep(val) {
+      state.dragDateStep = val;
+      saveState();
+    }
+
+    // ============================================================================
+    // 5. PROGRESS BAR & URGENCY CALCULATIONS
+    // ============================================================================
+    function getTodayMidnight() {
+      const now = new Date();
+      return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    }
+
+    function parseLocalDate(dateStr) {
+      if (!dateStr) return getTodayMidnight();
+      const [y, m, d] = dateStr.split('-').map(Number);
+      return new Date(y, m - 1, d);
+    }
+
+    function formatDisplayDate(dateStr) {
+      if (!dateStr) return '';
+      const [y, m, d] = dateStr.split('-');
+      return `${d}/${m}/${y}`;
+    }
+
+    function calculateTaskMetrics(task) {
+      const today = getTodayMidnight();
+      const due = parseLocalDate(task.dueDate);
+      const diffMs = due.getTime() - today.getTime();
+      const daysRemaining = Math.round(diffMs / (1000 * 60 * 60 * 24));
+      const duration = Math.max(1, Number(task.duration) || 14);
+
+      let elapsedRatio = 1 - (daysRemaining / duration);
+      elapsedRatio = Math.min(1, Math.max(0, elapsedRatio));
+      const percent = Math.round(elapsedRatio * 100);
+
+      let barColor = 'bg-emerald-500';
+      let badgeClass = 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20';
+
+      if (elapsedRatio >= 0.8 || daysRemaining < 0) {
+        barColor = 'bg-rose-500';
+        badgeClass = 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/25';
+      } else if (elapsedRatio >= 0.5) {
+        barColor = 'bg-amber-500';
+        badgeClass = 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/25';
+      }
+
+      let timeText = '';
+      if (task.completed) {
+        timeText = 'Done';
+      } else if (daysRemaining < 0) {
+        timeText = `${Math.abs(daysRemaining)}d overdue`;
+      } else if (daysRemaining === 0) {
+        timeText = 'Due Today!';
+      } else {
+        timeText = `${daysRemaining}d left`;
+      }
+
+      return {
+        daysRemaining,
+        duration,
+        elapsedRatio,
+        percent,
+        barColor,
+        badgeClass,
+        timeText,
+        isOverdue: !task.completed && daysRemaining < 0
+      };
+    }
+
+    // ============================================================================
+    // 6. SORTING & INLINE EDITING
+    // ============================================================================
+    function sortTasks(tasksList) {
+      return [...tasksList].sort((a, b) => {
+        // Uncompleted first, Completed automatically sink to the bottom
+        if (a.completed !== b.completed) {
+          return a.completed ? 1 : -1;
+        }
+        if (state.sortBy === 'due-asc') {
+          const cmp = a.dueDate.localeCompare(b.dueDate);
+          return cmp !== 0 ? cmp : a.title.localeCompare(b.title, undefined, { numeric: true });
+        }
+        if (state.sortBy === 'due-desc') {
+          return b.dueDate.localeCompare(a.dueDate);
+        }
+        if (state.sortBy === 'urgency-desc') {
+          return calculateTaskMetrics(b).elapsedRatio - calculateTaskMetrics(a).elapsedRatio;
+        }
+        if (state.sortBy === 'title-asc') {
+          return a.title.localeCompare(b.title, undefined, { numeric: true, sensitivity: 'base' });
+        }
+        return 0;
+      });
+    }
+
+    function updateTaskInline(taskId, field, value) {
+      const task = state.tasks.find(t => t.id === taskId);
+      if (!task) return;
+      if (field === 'title') {
+        const trimmed = value.trim();
+        if (trimmed) task.title = trimmed;
+      } else if (field === 'dueDate') {
+        if (value) task.dueDate = value;
+      } else if (field === 'duration') {
+        const num = Math.max(1, parseInt(value, 10) || 14);
+        task.duration = num;
+      }
+      saveState();
+      renderAll();
+    }
+
+    // ============================================================================
+    // 7. RENDERING UI
+    // ============================================================================
+    function renderAll() {
+      renderStats();
+      renderTabsAndControls();
+      renderWorkspace();
+      lucide.createIcons();
+    }
+
+    function renderStats() {
+      const total = state.tasks.length;
+      const completed = state.tasks.filter(t => t.completed).length;
+      const pending = total - completed;
+      const urgent = state.tasks.filter(t => !t.completed && (calculateTaskMetrics(t).daysRemaining <= 3 || calculateTaskMetrics(t).elapsedRatio >= 0.8)).length;
+      const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+      document.getElementById('statPending').textContent = pending;
+      document.getElementById('statUrgent').textContent = urgent;
+      document.getElementById('statCompleted').textContent = completed;
+      document.getElementById('statPercent').textContent = `${pct}%`;
+      document.getElementById('statProgressBar').style.width = `${pct}%`;
+    }
+
+    function renderTabsAndControls() {
+      document.getElementById('sortSelect').value = state.sortBy;
+      document.getElementById('dragStepSelect').value = state.dragDateStep || '7';
+
+      const bar = document.getElementById('subjectTabsBar');
+      const allActive = state.activeTab === 'all';
+
+      let html = `
+        <button
+          onclick="setActiveTab('all')"
+          class="px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-2 border ${
+            allActive
+              ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 border-transparent shadow-sm'
+              : 'bg-slate-50 dark:bg-slate-800/70 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700'
+          }"
+        >
+          <span>All Courses (הכל)</span>
+          <span class="px-1.5 py-0.2 rounded-md text-[11px] bg-slate-500/20">${state.tasks.length}</span>
+        </button>
+      `;
+
+      state.subjects.forEach(subj => {
+        const c = subj.color;
+        const isActive = state.activeTab === subj.id;
+        const count = state.tasks.filter(t => t.subjectId === subj.id && !t.completed).length;
+
+        html += `
+          <button
+            onclick="setActiveTab('${subj.id}')"
+            class="px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-2 border"
+            style="${
+              isActive
+                ? `background-color: ${c.bg}; border-color: ${c.bar}; color: ${c.text}; box-shadow: 0 1px 3px ${c.bar}33`
+                : `border-color: transparent`
+            }"
+          >
+            <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" style="background-color: ${c.bar}"></span>
+            <span dir="auto" class="${isActive ? '' : 'text-slate-700 dark:text-slate-200'}">${escapeHtml(subj.name)}</span>
+            <span class="px-1.5 py-0.2 rounded-md text-[11px] bg-slate-500/15 text-slate-500 dark:text-slate-400">${count}</span>
+          </button>
+        `;
+      });
+
+      bar.innerHTML = html;
+    }
+
+    function renderWorkspace() {
+      const masterSec = document.getElementById('masterSection');
+      const subjectsSec = document.getElementById('subjectsSection');
+
+      if (state.activeTab === 'all') {
+        masterSec.classList.remove('hidden');
+        masterSec.className = 'lg:col-span-6 bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden flex flex-col';
+        subjectsSec.classList.remove('hidden');
+        subjectsSec.className = 'lg:col-span-6 grid grid-cols-1 gap-5';
+        renderMasterList();
+        renderSubjectCards();
+      } else {
+        // When a specific subject tab is selected, hide the left master table completely
+        // and display ONLY the single right-style subject card nicely centered.
+        masterSec.classList.add('hidden');
+        subjectsSec.classList.remove('hidden');
+        subjectsSec.className = 'lg:col-span-12 max-w-4xl w-full mx-auto grid grid-cols-1 gap-5';
+        renderSubjectCards();
+      }
+    }
+
+    function renderMasterList() {
+      const container = document.getElementById('masterTasksList');
+      const badge = document.getElementById('masterCountBadge');
+      const headerTitle = document.getElementById('masterHeaderTitle');
+      const subjectMap = new Map(state.subjects.map(s => [s.id, s]));
+
+      const filtered = state.activeTab === 'all'
+        ? state.tasks
+        : state.tasks.filter(t => t.subjectId === state.activeTab);
+
+      const activeSubj = subjectMap.get(state.activeTab);
+      headerTitle.textContent = activeSubj ? activeSubj.name : 'All Tasks (הכל)';
+
+      const sorted = sortTasks(filtered);
+      badge.textContent = sorted.length;
+
+      if (sorted.length === 0) {
+        container.innerHTML = `
+          <div class="p-10 text-center space-y-2">
+            <p class="text-sm text-slate-400">No homework tasks in this view yet.</p>
+            <button onclick="openTaskModal('${state.activeTab !== 'all' ? state.activeTab : ''}')" class="text-xs font-semibold text-indigo-500 hover:underline">+ Add first task or series</button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = sorted.map(task => {
+        const subj = subjectMap.get(task.subjectId) || { name: 'Course', color: COLOR_THEMES[0] };
+        return buildTaskRowHTML(task, subj, true);
+      }).join('');
+    }
+
+    function renderSubjectCards() {
+      const container = document.getElementById('subjectsSection');
+      const subjectsToRender = state.activeTab === 'all'
+        ? state.subjects
+        : state.subjects.filter(s => s.id === state.activeTab);
+
+      container.innerHTML = subjectsToRender.map(subject => {
+        const c = subject.color;
+        const subjTasks = sortTasks(state.tasks.filter(t => t.subjectId === subject.id));
+        const doneCount = subjTasks.filter(t => t.completed).length;
+
+        return `
+          <div class="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden flex flex-col">
+            <div class="h-2 w-full" style="background-color: ${c.bar}"></div>
+            <div class="p-4 border-b border-slate-200/80 dark:border-slate-800 flex items-center justify-between gap-2" style="background-color: ${c.bg}33">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="w-3.5 h-3.5 rounded-full flex-shrink-0" style="background-color: ${c.bar}"></span>
+                <h3 dir="auto" class="font-bold text-base text-slate-900 dark:text-white truncate">${escapeHtml(subject.name)}</h3>
+                <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-white/80 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+                  ${doneCount}/${subjTasks.length}
+                </span>
+              </div>
+
+              <div class="flex items-center gap-1 flex-shrink-0">
+                <button
+                  onclick="openTaskModal('${subject.id}', false)"
+                  class="px-2.5 py-1 rounded-lg text-xs font-semibold text-white shadow-sm hover:opacity-90 transition-opacity flex items-center gap-1"
+                  style="background-color: ${c.bar}"
+                >
+                  <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                  <span>Add Task</span>
+                </button>
+                <button
+                  onclick="openSubjectModal('${subject.id}')"
+                  title="Edit Course"
+                  class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
+                >
+                  <i data-lucide="pencil" class="w-3.5 h-3.5"></i>
+                </button>
+                <button
+                  onclick="confirmDeleteSubject('${subject.id}')"
+                  title="Delete Course"
+                  class="p-1.5 rounded-lg text-slate-400 hover:text-rose-500"
+                >
+                  <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="divide-y divide-slate-100 dark:divide-slate-800/70">
+              ${
+                subjTasks.length === 0
+                  ? `<div class="p-6 text-center">
+                       <p class="text-xs text-slate-400">No tasks in this course yet.</p>
+                       <button onclick="openTaskModal('${subject.id}', false)" class="mt-2 text-xs font-semibold hover:underline" style="color: ${c.bar}">
+                         + Add Task
+                       </button>
+                     </div>`
+                  : subjTasks.map(t => buildTaskRowHTML(t, subject, false)).join('')
+              }
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function buildTaskRowHTML(task, subject, showSubjectPill) {
+      const m = calculateTaskMetrics(task);
+      const c = subject.color || COLOR_THEMES[0];
+
+      return `
+        <div data-task-id="${task.id}" class="task-row p-3.5 sm:px-4 hover:bg-slate-50/90 dark:hover:bg-slate-800/40 ${task.completed ? 'opacity-60 bg-slate-50/50 dark:bg-slate-900/30' : ''}">
+          <div class="flex items-start gap-3">
+            <!-- Checkbox -->
+            <input
+              type="checkbox"
+              class="custom-checkbox mt-1"
+              ${task.completed ? 'checked' : ''}
+              onchange="toggleTaskCompleted('${task.id}')"
+              title="Mark completed"
+            />
+
+            <div class="flex-grow min-w-0">
+              <!-- Top Line: Subject Pill + Inline Editable Title + Delete -->
+              <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2 min-w-0 flex-grow">
+                  ${
+                    showSubjectPill
+                      ? `<span
+                           dir="auto"
+                           class="px-2 py-0.5 rounded-md text-[11px] font-bold flex-shrink-0"
+                           style="background-color: ${c.bg}; color: ${c.text}; border: 1px solid ${c.border}"
+                         >${escapeHtml(subject.name)}</span>`
+                      : ''
+                  }
+                  <!-- Inline Editable Task Title -->
+                  <input
+                    type="text"
+                    dir="auto"
+                    value="${escapeHtml(task.title)}"
+                    onchange="updateTaskInline('${task.id}', 'title', this.value)"
+                    class="inline-edit-input text-sm font-semibold w-full min-w-[90px] ${
+                      task.completed ? 'line-through text-slate-400 dark:text-slate-500' : 'text-slate-900 dark:text-slate-100'
+                    }"
+                    title="Click to edit title"
+                  />
+                </div>
+
+                <!-- Delete -->
+                <div class="flex items-center gap-1 flex-shrink-0">
+                  <button
+                    onclick="deleteTask('${task.id}')"
+                    title="Delete task"
+                    class="p-1 rounded-lg text-slate-400 hover:text-rose-500 hover:bg-rose-500/10 transition-colors"
+                  >
+                    <i data-lucide="trash" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Middle Meta Row: Inline Date Picker, Duration Input, Urgency Pill -->
+              <div class="flex flex-wrap items-center justify-between gap-2 mt-1.5 text-xs">
+                <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+                  <label class="inline-flex items-center gap-1 cursor-pointer" title="Click to change Due Date">
+                    <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                    <input
+                      type="date"
+                      value="${task.dueDate}"
+                      onchange="updateTaskInline('${task.id}', 'dueDate', this.value)"
+                      class="inline-edit-input text-xs font-medium text-slate-700 dark:text-slate-300 cursor-pointer"
+                    />
+                  </label>
+
+                  <label class="inline-flex items-center gap-1" title="Allocated Days (זמן שהוקצה)">
+                    <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+                    <input
+                      type="number"
+                      min="1"
+                      max="365"
+                      value="${m.duration}"
+                      onchange="updateTaskInline('${task.id}', 'duration', this.value)"
+                      class="inline-edit-input w-12 text-center text-xs font-medium text-slate-700 dark:text-slate-300"
+                    />
+                    <span>d</span>
+                  </label>
+                </div>
+
+                ${
+                  task.completed
+                    ? `<span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">✓ Completed</span>`
+                    : `<span class="px-2 py-0.5 rounded-md text-[11px] font-semibold border ${m.badgeClass} ${m.isOverdue ? 'pulse-urgent' : ''}">
+                         ${m.timeText} • ${m.percent}%
+                       </span>`
+                }
+              </div>
+
+              <!-- Progress Bar -->
+              ${
+                !task.completed
+                  ? `<div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mt-2">
+                       <div class="h-full ${m.barColor} rounded-full transition-all duration-500" style="width: ${Math.max(4, m.percent)}%"></div>
+                     </div>`
+                  : ''
+              }
+            </div>
+          </div>
+
+          <!-- EXCEL FILL HANDLE (Bottom-Right Corner Square) -->
+          <div
+            class="fill-handle"
+            onmousedown="startFillDrag(event, '${task.id}')"
+            ontouchstart="startFillDrag(event, '${task.id}')"
+            title="Drag down like Excel to auto-fill ${escapeHtml(incrementTaskTitle(task.title, 1))}, ${escapeHtml(incrementTaskTitle(task.title, 2))}..."
+          ></div>
+        </div>
+      `;
+    }
+
+    // One-click "+1" button to immediately append the next sequential task
+    function quickDuplicateNext(taskId) {
+      const source = state.tasks.find(t => t.id === taskId);
+      if (!source) return;
+      const stepDays = getStepDaysForTask(source);
+      const nextTitle = incrementTaskTitle(source.title, 1);
+      const nextDate = addDaysToDateString(source.dueDate, stepDays);
+
+      state.tasks.push({
+        id: 'task_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
+        subjectId: source.subjectId,
+        title: nextTitle,
+        dueDate: nextDate,
+        duration: source.duration,
+        completed: false
+      });
+
+      saveState();
+      renderAll();
+      showToast(`Added "${nextTitle}" (${formatDisplayDate(nextDate)})`);
+    }
+
+    // ============================================================================
+    // 8. SUBJECT & TASK MODALS (With Batch Series Generator)
+    // ============================================================================
+    let selectedThemeIndex = 0;
+
+    function renderColorSwatches() {
+      const container = document.getElementById('colorSwatches');
+      container.innerHTML = COLOR_THEMES.map((theme, idx) => `
+        <button
+          type="button"
+          onclick="selectColorTheme(${idx})"
+          id="swatchBtn-${idx}"
+          class="p-2 rounded-xl border-2 flex items-center gap-2 text-xs font-semibold transition-all"
+          style="background-color: ${theme.bg}; color: ${theme.text}; border-color: ${theme.border}"
+        >
+          <span class="w-3 h-3 rounded-full flex-shrink-0" style="background-color: ${theme.bar}"></span>
+          <span class="truncate">${theme.name.replace('Pastel ', '')}</span>
+        </button>
+      `).join('');
+    }
+
+    function selectColorTheme(idx) {
+      selectedThemeIndex = idx;
+      COLOR_THEMES.forEach((_, i) => {
+        const btn = document.getElementById(`swatchBtn-${i}`);
+        if (!btn) return;
+        if (i === idx) {
+          btn.classList.add('ring-2', 'ring-indigo-500', 'scale-105');
+        } else {
+          btn.classList.remove('ring-2', 'ring-indigo-500', 'scale-105');
+        }
+      });
+    }
+
+    function openSubjectModal(editId = null) {
+      if (!currentUser) { handleAuthAction(); return; }
+      const modal = document.getElementById('subjectModal');
+      const idInput = document.getElementById('subjectIdInput');
+      const nameInput = document.getElementById('subjectNameInput');
+      const titleEl = document.getElementById('subjectModalTitle');
+
+      if (editId) {
+        const subj = state.subjects.find(s => s.id === editId);
+        if (!subj) return;
+        titleEl.textContent = 'Edit Subject';
+        idInput.value = subj.id;
+        nameInput.value = subj.name;
+        const foundIdx = COLOR_THEMES.findIndex(t => t.name === subj.color?.name);
+        selectColorTheme(foundIdx >= 0 ? foundIdx : 0);
+      } else {
+        titleEl.textContent = 'New Subject';
+        idInput.value = '';
+        nameInput.value = '';
+        selectColorTheme(state.subjects.length % COLOR_THEMES.length);
+      }
+
+      modal.classList.add('is-open');
+      setTimeout(() => nameInput.focus(), 50);
+    }
+
+    function closeSubjectModal() {
+      const modal = document.getElementById('subjectModal');
+      modal.classList.remove('is-open');
+    }
+
+    function saveSubject(e) {
+      e.preventDefault();
+      const id = document.getElementById('subjectIdInput').value;
+      const name = document.getElementById('subjectNameInput').value.trim();
+      if (!name) return;
+
+      const chosenTheme = COLOR_THEMES[selectedThemeIndex] || COLOR_THEMES[0];
+
+      if (id) {
+        const subj = state.subjects.find(s => s.id === id);
+        if (subj) {
+          subj.name = name;
+          subj.color = chosenTheme;
+        }
+      } else {
+        state.subjects.push({
+          id: 'sub_' + Date.now(),
+          name,
+          color: chosenTheme
+        });
+      }
+
+      saveState();
+      closeSubjectModal();
+      renderAll();
+      showToast(`Saved course "${name}"`);
+    }
+
+    function confirmDeleteSubject(subjectId) {
+      const subj = state.subjects.find(s => s.id === subjectId);
+      if (!subj) return;
+      openConfirmModal(
+        `Delete "${subj.name}"?`,
+        `This will remove the course and all its tasks.`,
+        () => {
+          state.subjects = state.subjects.filter(s => s.id !== subjectId);
+          state.tasks = state.tasks.filter(t => t.subjectId !== subjectId);
+          if (state.activeTab === subjectId) state.activeTab = 'all';
+          saveState();
+          renderAll();
+          showToast(`Deleted "${subj.name}"`);
+        }
+      );
+    }
+
+    function openTaskModal(preselectedSubjectId = null, enableSeriesMode = false) {
+      if (!currentUser) { handleAuthAction(); return; }
+      if (state.subjects.length === 0) {
+        openSubjectModal();
+        return;
+      }
+
+      const modal = document.getElementById('taskModal');
+      const select = document.getElementById('taskSubjectSelect');
+      select.innerHTML = state.subjects.map(s => `<option value="${s.id}">${escapeHtml(s.name)}</option>`).join('');
+
+      if (preselectedSubjectId) {
+        select.value = preselectedSubjectId;
+      } else if (state.activeTab !== 'all') {
+        select.value = state.activeTab;
+      }
+
+      document.getElementById('taskIdInput').value = '';
+      document.getElementById('taskTitleInput').value = enableSeriesMode ? 'יבש 1' : '';
+      document.getElementById('taskDueDateInput').value = '2026-11-19';
+      document.getElementById('taskDurationInput').value = 14;
+
+      const toggle = document.getElementById('batchSeriesToggle');
+      toggle.checked = Boolean(enableSeriesMode);
+      toggleBatchSeriesMode();
+      updateSeriesPreview();
+
+      modal.classList.add('is-open');
+      setTimeout(() => document.getElementById('taskTitleInput').focus(), 50);
+    }
+
+    function closeTaskModal() {
+      const modal = document.getElementById('taskModal');
+      modal.classList.remove('is-open');
+    }
+
+    function toggleBatchSeriesMode() {
+      const enabled = document.getElementById('batchSeriesToggle').checked;
+      const controls = document.getElementById('batchSeriesControls');
+      if (enabled) {
+        controls.classList.remove('hidden');
+      } else {
+        controls.classList.add('hidden');
+      }
+      updateSeriesPreview();
+    }
+
+    function updateSeriesPreview() {
+      const enabled = document.getElementById('batchSeriesToggle').checked;
+      if (!enabled) return;
+
+      const baseTitle = document.getElementById('taskTitleInput').value.trim() || 'יבש 1';
+      const startDate = document.getElementById('taskDueDateInput').value || '2026-11-19';
+      const count = Math.max(2, Math.min(30, parseInt(document.getElementById('batchCountInput').value, 10) || 5));
+      const interval = Math.max(0, parseInt(document.getElementById('batchIntervalInput').value, 10) || 0);
+
+      const container = document.getElementById('batchPreviewPills');
+      let html = '';
+      for (let i = 0; i < count; i++) {
+        const title = i === 0 ? baseTitle : incrementTaskTitle(baseTitle, i);
+        const dt = addDaysToDateString(startDate, interval * i);
+        html += `
+          <span class="px-2 py-1 rounded-lg text-xs font-medium bg-white dark:bg-slate-800 border border-emerald-500/30 text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
+            <strong dir="auto" class="text-emerald-600 dark:text-emerald-400">${escapeHtml(title)}</strong>
+            <span class="text-[10px] text-slate-400">${formatDisplayDate(dt)}</span>
+          </span>
+        `;
+      }
+      container.innerHTML = html;
+    }
+
+    function saveTask(e) {
+      e.preventDefault();
+      const subjectId = document.getElementById('taskSubjectSelect').value;
+      const baseTitle = document.getElementById('taskTitleInput').value.trim();
+      const startDate = document.getElementById('taskDueDateInput').value;
+      const duration = Math.max(1, parseInt(document.getElementById('taskDurationInput').value, 10) || 14);
+      const isBatch = document.getElementById('batchSeriesToggle').checked;
+
+      if (!subjectId || !baseTitle || !startDate) return;
+
+      if (isBatch) {
+        const count = Math.max(2, Math.min(30, parseInt(document.getElementById('batchCountInput').value, 10) || 5));
+        const interval = Math.max(0, parseInt(document.getElementById('batchIntervalInput').value, 10) || 0);
+        for (let i = 0; i < count; i++) {
+          const title = i === 0 ? baseTitle : incrementTaskTitle(baseTitle, i);
+          const dueDate = addDaysToDateString(startDate, interval * i);
+          state.tasks.push({
+            id: 'task_' + Date.now() + '_' + i + '_' + Math.random().toString(36).slice(2, 5),
+            subjectId,
+            title,
+            dueDate,
+            duration,
+            completed: false
+          });
+        }
+        showToast(`Created ${count} sequential tasks!`);
+      } else {
+        state.tasks.push({
+          id: 'task_' + Date.now() + '_' + Math.random().toString(36).slice(2, 5),
+          subjectId,
+          title: baseTitle,
+          dueDate: startDate,
+          duration,
+          completed: false
+        });
+        showToast(`Added "${baseTitle}"`);
+      }
+
+      saveState();
+      closeTaskModal();
+      renderAll();
+    }
+
+    function captureTaskPositions() {
+      const positions = new Map();
+      document.querySelectorAll('.task-row[data-task-id]').forEach((el, idx) => {
+        // Key by container + taskId since a task can appear in both master list and subject card
+        const containerId = el.parentElement ? (el.parentElement.id || el.closest('section')?.id || 'sec') : 'root';
+        const key = `${containerId}__${el.getAttribute('data-task-id')}`;
+        positions.set(key, el.getBoundingClientRect().top);
+        el.dataset.flipKey = key;
+      });
+      return positions;
+    }
+
+    function playFLIPAnimation(oldPositions) {
+      document.querySelectorAll('.task-row[data-task-id]').forEach(el => {
+        const containerId = el.parentElement ? (el.parentElement.id || el.closest('section')?.id || 'sec') : 'root';
+        const key = `${containerId}__${el.getAttribute('data-task-id')}`;
+        const oldTop = oldPositions.get(key);
+        if (oldTop === undefined) return;
+        const newTop = el.getBoundingClientRect().top;
+        const deltaY = oldTop - newTop;
+        if (Math.abs(deltaY) > 2) {
+          el.style.transition = 'none';
+          el.style.transform = `translateY(${deltaY}px)`;
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              el.style.transition = 'transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease';
+              el.style.transform = '';
+            });
+          });
+        }
+      });
+    }
+
+    function toggleTaskCompleted(taskId) {
+      const task = state.tasks.find(t => t.id === taskId);
+      if (!task) return;
+      const becomingCompleted = !task.completed;
+      const rows = document.querySelectorAll(`.task-row[data-task-id="${taskId}"]`);
+
+      rows.forEach(row => {
+        row.classList.add(becomingCompleted ? 'completing-down' : 'uncompleting-up');
+      });
+
+      setTimeout(() => {
+        const oldPositions = captureTaskPositions();
+        task.completed = becomingCompleted;
+        saveState();
+        renderAll();
+        playFLIPAnimation(oldPositions);
+      }, 170);
+    }
+
+    function deleteTask(taskId) {
+      const rows = document.querySelectorAll(`.task-row[data-task-id="${taskId}"]`);
+      rows.forEach(row => row.classList.add('deleting-out'));
+
+      setTimeout(() => {
+        const oldPositions = captureTaskPositions();
+        state.tasks = state.tasks.filter(t => t.id !== taskId);
+        saveState();
+        renderAll();
+        playFLIPAnimation(oldPositions);
+        showToast('Task removed');
+      }, 150);
+    }
+
+    // ============================================================================
+    // 9. NAVIGATION, EXPORT/IMPORT & UTILITIES
+    // ============================================================================
+    function setActiveTab(tabId) {
+      state.activeTab = tabId;
+      saveState();
+      renderAll();
+    }
+
+    function setViewMode(mode) {
+      state.viewMode = mode;
+      saveState();
+      renderAll();
+    }
+
+    function handleSortChange(val) {
+      state.sortBy = val;
+      saveState();
+      renderAll();
+    }
+
+    function toggleDataMenu() {
+      if (!currentUser) return;
+      document.getElementById('dataMenuDropdown').classList.toggle('is-open');
+    }
+
+    function exportData() {
+      document.getElementById('dataMenuDropdown').classList.remove('is-open');
+      const payload = {
+        activeTab: state.activeTab,
+        sortBy: state.sortBy,
+        subjects: state.subjects,
+        tasks: state.tasks
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `unitask_backup_${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('Backup exported!');
+    }
+
+    function importData(event) {
+      document.getElementById('dataMenuDropdown').classList.remove('is-open');
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          if (Array.isArray(parsed.subjects) && Array.isArray(parsed.tasks)) {
+            state.subjects = parsed.subjects.map((s, i) => ({
+              ...s,
+              color: normalizeSubjectColor(s.color, i)
+            }));
+            state.tasks = parsed.tasks.map(normalizeTask);
+            state.activeTab = parsed.activeTab || 'all';
+            state.sortBy = parsed.sortBy || 'due-asc';
+            saveState();
+            renderAll();
+            showToast('Backup imported successfully!');
+          }
+        } catch (err) {
+          showToast('Invalid JSON backup file');
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+
+    let confirmAction = null;
+    function openConfirmModal(title, desc, onConfirm) {
+      document.getElementById('confirmModalTitle').textContent = title;
+      document.getElementById('confirmModalDesc').textContent = desc;
+      confirmAction = onConfirm;
+      document.getElementById('confirmModalActionBtn').onclick = () => {
+        if (confirmAction) confirmAction();
+        closeConfirmModal();
+      };
+      const modal = document.getElementById('confirmModal');
+      modal.classList.add('is-open');
+    }
+
+    function closeConfirmModal() {
+      const modal = document.getElementById('confirmModal');
+      modal.classList.remove('is-open');
+    }
+
+    function toggleTheme() {
+      state.theme = state.theme === 'dark' ? 'light' : 'dark';
+      applyTheme();
+      saveState();
+    }
+
+    function applyTheme() {
+      document.documentElement.classList.toggle('dark', state.theme === 'dark');
+    }
+
+    function showToast(msg) {
+      const container = document.getElementById('toastContainer');
+      const el = document.createElement('div');
+      el.className = 'toast-item px-4 py-2.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-semibold shadow-lg transition-all duration-200';
+      el.textContent = msg;
+      container.appendChild(el);
+      setTimeout(() => {
+        el.style.opacity = '0';
+        setTimeout(() => el.remove(), 250);
+      }, 2500);
+    }
+
+    function escapeHtml(str) {
+      return String(str ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    window.onload = initApp;
+  </script>
+</body>
+</html>
