@@ -8,6 +8,7 @@
       "firebase.json",
       "firestore.rules",
       ".firebaserc",
+      "README.md",
       "**/.*",
       "**/node_modules/**"
     ],
