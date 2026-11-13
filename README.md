@@ -5,6 +5,18 @@ You sign in with Google, and your tasks are saved in the cloud.
 
 🔗 **Live website:** https://unitask-a9204.web.app
 
+## Preview Version
+
+The full app is private and only the owner's Google account can sign in. To let
+others try it, the login screen has a **View Preview Version** button. It opens
+the same app with sample Electrical Engineering courses and tasks.
+
+- Changes stay in the browser's memory only. Nothing is saved to the database,
+  and everything resets when you leave the preview or reload the page.
+- You can add up to **30 tasks** and **5 subjects** per visit. Deleting,
+  editing and marking tasks as completed are not limited.
+- The preview cannot read or change the owner's data.
+
 ## ⚠️ Disclaimer
 
 This project was made as a **homework assignment**. The assignment asked for the
