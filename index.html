@@ -270,6 +270,129 @@
     body.is-preview .preview-only { display: inline-flex !important; }
     body.is-preview .owner-only { display: none !important; }
 
+    /* Course tabs: 2 rows on tablet/desktop, single scrolling row on mobile */
+    @media (min-width: 640px) {
+      #subjectTabsBar {
+        display: grid;
+        grid-template-rows: repeat(2, auto);
+        grid-auto-flow: column;
+        grid-auto-columns: max-content;
+        justify-content: start;
+      }
+    }
+
+    /* Calendar view: continuous Sunday-first week rows */
+    .cal-scroll {
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+    }
+    /* Reserve the same scrollbar gutter on header and body so columns align */
+    .cal-scroll, .cal-head {
+      scrollbar-gutter: stable;
+    }
+    .cal-head { overflow-y: hidden; }
+    #calendarBtn[aria-pressed="true"] svg { color: #ffffff; }
+    .cal-week {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+    }
+    .cal-cell {
+      --cal-line: #e2e8f0;
+      --cal-edge: #818cf8;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 2px;
+      aspect-ratio: 1 / 1;
+      min-width: 0;
+      overflow: hidden;
+      padding: 3px;
+      text-align: left;
+      border-right: 1px solid var(--cal-line);
+      border-bottom: 1px solid var(--cal-line);
+      cursor: pointer;
+      transition: background-color 0.15s ease, opacity 0.2s ease;
+    }
+    .cal-cell:nth-child(7) { border-right: none; }
+    .cal-month-even { background: #ffffff; }
+    .cal-month-odd  { background: #f3f5f9; }
+    .cal-cell:hover { background: #eef2ff; }
+    .cal-cell:focus-visible { outline: 2px solid #6366f1; outline-offset: -2px; }
+    .dark .cal-cell { --cal-line: #263246; --cal-edge: #6366f1; }
+    .dark .cal-month-even { background: #0f172a; }
+    .dark .cal-month-odd  { background: #151e33; }
+    .dark .cal-cell:hover { background: #1e2a4a; }
+    /* Thin line marking where a new month begins */
+    .cal-edge-top  { border-top: 2px solid var(--cal-edge); }
+    .cal-edge-left { border-left: 2px solid var(--cal-edge); }
+    .cal-day-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.25rem;
+      height: 1.25rem;
+      padding: 0 0.2rem;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #334155;
+      transition: color 0.2s ease;
+    }
+    .dark .cal-day-num { color: #e2e8f0; }
+    .cal-cell.is-today .cal-day-num {
+      background: #4f46e5;
+      color: #ffffff !important;
+    }
+    .cal-month-tag {
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #6366f1;
+    }
+    .dark .cal-month-tag { color: #a5b4fc; }
+    .cal-task {
+      display: block;
+      flex-shrink: 0;
+      padding: 0 4px;
+      border-left: 3px solid;
+      border-radius: 4px;
+      font-size: 0.66rem;
+      line-height: 1.35;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .cal-task.is-done {
+      opacity: 0.5;
+      text-decoration: line-through;
+    }
+    .cal-more {
+      flex-shrink: 0;
+      font-size: 0.62rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #4f46e5;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .dark .cal-more { color: #a5b4fc; }
+    .cal-more-short { display: none; }
+    #dayModalList .fill-handle { display: none; }
+    @media (max-width: 640px) {
+      .cal-cell { padding: 2px; gap: 2px; }
+      .cal-day-num { font-size: 0.65rem; min-width: 1.1rem; height: 1.1rem; }
+      .cal-month-tag { display: none; }
+      /* Mobile: tasks shrink to colored bars */
+      .cal-task { height: 5px; padding: 0; border-left: none; border-radius: 3px; font-size: 0; background: var(--bar) !important; }
+      .cal-task.is-done { text-decoration: none; }
+      .cal-more-full { display: none; }
+      .cal-more-short { display: inline; }
+    }
+
   </style>
 </head>
 <body class="bg-slate-50 dark:bg-slate-925 text-slate-900 dark:text-slate-100 min-h-screen overflow-x-hidden max-w-full font-sans antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-200 select-none sm:select-auto">
@@ -435,8 +558,10 @@
 
     <!-- Subject Tabs & Sorting Controls -->
     <section class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-3 sm:p-4 shadow-sm flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
-      <!-- Subject Filter Tabs (All + Each Subject) -->
-      <div id="subjectTabsBar" class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0"></div>
+      <!-- Tabs: Calendar + All Courses + Each Subject -->
+      <div class="flex items-stretch gap-2 min-w-0">
+        <div id="subjectTabsBar" class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 min-w-0"></div>
+      </div>
 
       <!-- Right Controls: Sort -->
       <div class="flex flex-wrap items-center gap-2">
@@ -458,6 +583,7 @@
 
       <!-- LEFT / MAIN: Unified All Tasks Table (Only visible on 'All Courses' tab) -->
       <section id="masterSection" class="lg:col-span-6 bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden flex flex-col">
+        <div id="masterListView">
         <div class="p-4 sm:px-5 border-b border-slate-200/80 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-850/60">
           <div class="flex items-center gap-2.5">
             <div class="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-500 flex items-center justify-center">
@@ -475,6 +601,33 @@
         </div>
 
         <div id="masterTasksList" class="divide-y divide-slate-100 dark:divide-slate-800/70"></div>
+        </div>
+
+        <!-- Calendar view (replaces the task list when toggled) -->
+        <div id="calendarView" class="hidden">
+          <style id="calendarFocusStyle"></style>
+          <div class="p-4 sm:px-5 border-b border-slate-200/80 dark:border-slate-800 flex items-center justify-between gap-2 bg-slate-50/50 dark:bg-slate-850/60">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <div class="w-8 h-8 rounded-lg bg-violet-500/10 text-violet-500 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="calendar-days" class="w-4 h-4"></i>
+              </div>
+              <h2 id="calendarMonthLabel" class="text-base font-bold text-slate-900 dark:text-white truncate">Calendar</h2>
+            </div>
+            <div class="flex items-center gap-1.5 flex-shrink-0">
+              <button onclick="scrollCalendarToDate(getTodayMidnight(), true)" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-600 dark:text-indigo-400 transition-colors">Today</button>
+            </div>
+          </div>
+          <div class="cal-week cal-head bg-slate-100 dark:bg-slate-850 border-b border-slate-200 dark:border-slate-800 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+            <div class="py-1.5 text-center">Sun</div>
+            <div class="py-1.5 text-center">Mon</div>
+            <div class="py-1.5 text-center">Tue</div>
+            <div class="py-1.5 text-center">Wed</div>
+            <div class="py-1.5 text-center">Thu</div>
+            <div class="py-1.5 text-center">Fri</div>
+            <div class="py-1.5 text-center">Sat</div>
+          </div>
+          <div id="calendarScroll" class="cal-scroll relative overflow-y-auto h-[65vh] max-h-[42rem]"></div>
+        </div>
       </section>
 
       <!-- RIGHT / SINGLE VIEW: Individual Subject Boards -->
@@ -685,6 +838,28 @@
       <p id="previewLimitDesc" class="text-sm text-slate-500 dark:text-slate-400 mt-1.5"></p>
       <div class="flex items-center justify-end mt-6">
         <button onclick="closePreviewLimitModal()" class="px-4 py-2 rounded-xl text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white">Got it</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Tasks due on a calendar day -->
+  <div id="dayModal" onclick="if(event.target === this) closeDayModal()" class="modal-backdrop fixed inset-0 z-40 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm">
+    <div role="dialog" aria-modal="true" aria-labelledby="dayModalTitle" class="modal-panel bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-lg w-full max-h-[85vh] flex flex-col overflow-hidden shadow-2xl">
+      <div class="flex items-start justify-between gap-3 p-5 border-b border-slate-200 dark:border-slate-800">
+        <div class="min-w-0">
+          <h3 id="dayModalTitle" class="text-lg font-bold text-slate-900 dark:text-white">Day</h3>
+          <p id="dayModalSubtitle" class="text-sm text-slate-500 dark:text-slate-400 mt-0.5"></p>
+        </div>
+        <button onclick="closeDayModal()" title="Close" class="p-1.5 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div id="dayModalList" class="flex-1 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800/70"></div>
+      <div class="p-4 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+        <button onclick="addTaskOnCalendarDay()" class="px-3.5 py-2 rounded-xl text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition-colors inline-flex items-center gap-1.5">
+          <i data-lucide="plus" class="w-4 h-4"></i>
+          <span>Add task on this day</span>
+        </button>
       </div>
     </div>
   </div>
@@ -1706,6 +1881,7 @@
       renderStats();
       renderTabsAndControls();
       renderWorkspace();
+      refreshCalendar();
       lucide.createIcons();
     }
 
@@ -1728,9 +1904,23 @@
       document.getElementById('dragStepSelect').value = state.dragDateStep || '7';
 
       const bar = document.getElementById('subjectTabsBar');
-      const allActive = state.activeTab === 'all';
+      const allActive = state.activeTab === 'all' && !calendar.open;
 
       let html = `
+        <button
+          id="calendarBtn"
+          onclick="openCalendarView()"
+          title="Show calendar"
+          aria-pressed="${calendar.open}"
+          class="px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-2 border ${
+            calendar.open
+              ? 'bg-violet-600 text-white border-transparent shadow-sm'
+              : 'bg-slate-50 dark:bg-slate-800/70 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700'
+          }"
+        >
+          <i data-lucide="calendar-days" class="w-4 h-4 ${calendar.open ? '' : 'text-violet-500'}"></i>
+          <span>Calendar</span>
+        </button>
         <button
           onclick="setActiveTab('all')"
           class="px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-2 border ${
@@ -1746,7 +1936,7 @@
 
       state.subjects.forEach(subj => {
         const c = subj.color;
-        const isActive = state.activeTab === subj.id;
+        const isActive = state.activeTab === subj.id && !calendar.open;
         const count = state.tasks.filter(t => t.subjectId === subj.id && !t.completed).length;
 
         html += `
@@ -1773,7 +1963,18 @@
       const masterSec = document.getElementById('masterSection');
       const subjectsSec = document.getElementById('subjectsSection');
 
-      if (state.activeTab === 'all') {
+      document.getElementById('masterListView').classList.toggle('hidden', calendar.open);
+      document.getElementById('calendarView').classList.toggle('hidden', !calendar.open);
+
+      // Inline span: the Tailwind CDN generates new classes asynchronously, and the calendar
+      // needs its final width immediately to scroll to the right week.
+      masterSec.style.gridColumn = calendar.open ? '1 / -1' : '';
+
+      if (calendar.open) {
+        masterSec.classList.remove('hidden');
+        masterSec.className = 'bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden flex flex-col';
+        subjectsSec.classList.add('hidden');
+      } else if (state.activeTab === 'all') {
         masterSec.classList.remove('hidden');
         masterSec.className = 'lg:col-span-6 bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden flex flex-col';
         subjectsSec.classList.remove('hidden');
@@ -2327,6 +2528,7 @@
     // ============================================================================
     function setActiveTab(tabId) {
       state.activeTab = tabId;
+      calendar.open = false;
       saveState();
       renderAll();
     }
@@ -2394,6 +2596,237 @@
       reader.readAsText(file);
       event.target.value = '';
     }
+
+    // ============================================================================
+    // CALENDAR VIEW (replaces the task list; continuous scroll, Sunday-first weeks)
+    // ============================================================================
+    const CAL_MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const CAL_CHUNK_WEEKS = 26;
+    const CAL_EDGE_PX = 600;
+    const CAL_MAX_CHIPS = 3;
+    const calendar = { start: null, weeks: 0, ticking: false, open: false, focusMonth: null, dayKey: null };
+
+    function toDateKey(date) {
+      const m = String(date.getMonth() + 1).padStart(2, '0');
+      const d = String(date.getDate()).padStart(2, '0');
+      return `${date.getFullYear()}-${m}-${d}`;
+    }
+
+    function addDays(date, n) {
+      return new Date(date.getFullYear(), date.getMonth(), date.getDate() + n);
+    }
+
+    function startOfWeekSunday(date) {
+      return addDays(date, -date.getDay());
+    }
+
+    function calendarTasks() {
+      return state.tasks;
+    }
+
+    function buildCalendarWeeksHTML(firstSunday, count) {
+      const subjectMap = new Map(state.subjects.map(s => [s.id, s]));
+      const tasksByDate = new Map();
+      sortTasks(calendarTasks()).forEach(t => {
+        if (!tasksByDate.has(t.dueDate)) tasksByDate.set(t.dueDate, []);
+        tasksByDate.get(t.dueDate).push(t);
+      });
+      const todayKey = toDateKey(getTodayMidnight());
+
+      let html = '';
+      for (let w = 0; w < count; w++) {
+        const weekStart = addDays(firstSunday, w * 7);
+        html += `<div class="cal-week" data-week="${toDateKey(weekStart)}">`;
+        for (let d = 0; d < 7; d++) {
+          const date = addDays(weekStart, d);
+          const key = toDateKey(date);
+          const day = date.getDate();
+          const monthIndex = date.getFullYear() * 12 + date.getMonth();
+          const classes = ['cal-cell', `cm-${monthIndex}`, monthIndex % 2 === 0 ? 'cal-month-even' : 'cal-month-odd'];
+          if (day <= 7) classes.push('cal-edge-top');
+          if (day === 1 && d !== 0) classes.push('cal-edge-left');
+          if (key === todayKey) classes.push('is-today');
+
+          const monthTag = day === 1
+            ? `<span class="cal-month-tag ml-1">${CAL_MONTH_NAMES[date.getMonth()].slice(0, 3)}${date.getMonth() === 0 ? ' ' + date.getFullYear() : ''}</span>`
+            : '';
+
+          // Keep the cell square: show up to 3 tasks, or 2 + a "+N more" line
+          const dayTasks = tasksByDate.get(key) || [];
+          const visible = dayTasks.length > CAL_MAX_CHIPS ? dayTasks.slice(0, CAL_MAX_CHIPS - 1) : dayTasks;
+          const hidden = dayTasks.length - visible.length;
+          const chips = visible.map(task => {
+            const subj = subjectMap.get(task.subjectId) || { name: 'Course', color: COLOR_THEMES[0] };
+            const c = subj.color || COLOR_THEMES[0];
+            return `<span class="cal-task${task.completed ? ' is-done' : ''}" dir="auto" style="--bar:${escapeHtml(c.bar)};background:${escapeHtml(c.bg)};border-color:${escapeHtml(c.bar)};color:${escapeHtml(c.text)}">${escapeHtml(task.title)}</span>`;
+          }).join('');
+          const more = hidden > 0
+            ? `<span class="cal-more"><span class="cal-more-full">+${hidden} more task${hidden === 1 ? '' : 's'}</span><span class="cal-more-short">+${hidden}</span></span>`
+            : '';
+          const label = `${date.toDateString()}: ${dayTasks.length} task${dayTasks.length === 1 ? '' : 's'} due`;
+
+          html += `<button type="button" class="${classes.join(' ')}" onclick="openDayModal('${key}')" title="${label}" aria-label="${label}"><span class="flex items-center flex-shrink-0"><span class="cal-day-num">${day}</span>${monthTag}</span>${chips}${more}</button>`;
+        }
+        html += '</div>';
+      }
+      return html;
+    }
+
+    function renderCalendar(anchorDate) {
+      const anchor = anchorDate || getTodayMidnight();
+      calendar.start = startOfWeekSunday(new Date(anchor.getFullYear(), anchor.getMonth() - 6, 1));
+      const end = startOfWeekSunday(new Date(anchor.getFullYear(), anchor.getMonth() + 13, 1));
+      calendar.weeks = Math.round((end - calendar.start) / (7 * 86400000));
+      document.getElementById('calendarScroll').innerHTML = buildCalendarWeeksHTML(calendar.start, calendar.weeks);
+    }
+
+    function refreshCalendar() {
+      if (!calendar.open) return;
+      const scroller = document.getElementById('calendarScroll');
+      const top = scroller.scrollTop;
+      scroller.innerHTML = buildCalendarWeeksHTML(calendar.start, calendar.weeks);
+      scroller.scrollTop = top;
+      renderDayModal();
+    }
+
+    function scrollCalendarToDate(date, smooth = false) {
+      const scroller = document.getElementById('calendarScroll');
+      const first = startOfWeekSunday(new Date(date.getFullYear(), date.getMonth(), 1));
+      let row = scroller.querySelector(`[data-week="${toDateKey(first)}"]`);
+      if (!row) {
+        renderCalendar(date);
+        row = scroller.querySelector(`[data-week="${toDateKey(first)}"]`);
+        smooth = false;
+      }
+      if (!row) return;
+      scroller.scrollTo({ top: row.offsetTop, behavior: smooth ? 'smooth' : 'auto' });
+      if (!smooth) saveCalendarAnchor();
+      updateCalendarMonthLabel();
+    }
+
+    function extendCalendarIfNeeded() {
+      const scroller = document.getElementById('calendarScroll');
+      if (scroller.scrollTop < CAL_EDGE_PX) {
+        const newStart = addDays(calendar.start, -CAL_CHUNK_WEEKS * 7);
+        const prevHeight = scroller.scrollHeight;
+        scroller.insertAdjacentHTML('afterbegin', buildCalendarWeeksHTML(newStart, CAL_CHUNK_WEEKS));
+        calendar.start = newStart;
+        calendar.weeks += CAL_CHUNK_WEEKS;
+        scroller.scrollTop += scroller.scrollHeight - prevHeight;
+      }
+      if (scroller.scrollHeight - scroller.scrollTop - scroller.clientHeight < CAL_EDGE_PX) {
+        scroller.insertAdjacentHTML('beforeend', buildCalendarWeeksHTML(addDays(calendar.start, calendar.weeks * 7), CAL_CHUNK_WEEKS));
+        calendar.weeks += CAL_CHUNK_WEEKS;
+      }
+    }
+
+    function updateCalendarMonthLabel() {
+      const scroller = document.getElementById('calendarScroll');
+      const probeY = scroller.getBoundingClientRect().top + scroller.clientHeight / 3;
+      let current = null;
+      for (const row of scroller.children) {
+        if (row.getBoundingClientRect().bottom >= probeY) { current = row; break; }
+      }
+      if (!current) return;
+      const saturday = addDays(parseLocalDate(current.dataset.week), 6);
+      const monthIndex = saturday.getFullYear() * 12 + saturday.getMonth();
+      if (calendar.focusMonth === monthIndex) return;
+      calendar.focusMonth = monthIndex;
+      document.getElementById('calendarMonthLabel').textContent = `${CAL_MONTH_NAMES[saturday.getMonth()]} ${saturday.getFullYear()}`;
+      // Mute day numbers of every month except the one in view
+      const sel = `#calendarScroll .cal-cell:not(.cm-${monthIndex}) .cal-day-num`;
+      document.getElementById('calendarFocusStyle').textContent =
+        `${sel}{color:#a3acb9;font-weight:500}.dark ${sel}{color:#56637a}`;
+    }
+
+    function onCalendarScroll() {
+      if (calendar.ticking) return;
+      calendar.ticking = true;
+      requestAnimationFrame(() => {
+        calendar.ticking = false;
+        extendCalendarIfNeeded();
+        updateCalendarMonthLabel();
+      });
+    }
+
+    function openCalendarView() {
+      if (calendar.open) return;
+      calendar.open = true;
+      calendar.focusMonth = null;
+      renderCalendar(getTodayMidnight());
+      renderAll();
+      scrollCalendarToDate(getTodayMidnight());
+    }
+
+    function renderDayModal() {
+      const key = calendar.dayKey;
+      if (!key) return;
+      const subjectMap = new Map(state.subjects.map(s => [s.id, s]));
+      const dayTasks = sortTasks(calendarTasks().filter(t => t.dueDate === key));
+      document.getElementById('dayModalTitle').textContent = parseLocalDate(key)
+        .toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+      document.getElementById('dayModalSubtitle').textContent =
+        dayTasks.length === 0 ? 'No tasks due this day' : `${dayTasks.length} task${dayTasks.length === 1 ? '' : 's'} due`;
+      document.getElementById('dayModalList').innerHTML = dayTasks.length === 0
+        ? `<p class="p-8 text-center text-sm text-slate-400">Nothing due. Enjoy the free day!</p>`
+        : dayTasks.map(task => {
+            const subj = subjectMap.get(task.subjectId) || { name: 'Course', color: COLOR_THEMES[0] };
+            return buildTaskRowHTML(task, subj, true);
+          }).join('');
+    }
+
+    function openDayModal(key) {
+      calendar.dayKey = key;
+      renderDayModal();
+      document.getElementById('dayModal').classList.add('is-open');
+      lucide.createIcons();
+    }
+
+    function closeDayModal() {
+      calendar.dayKey = null;
+      document.getElementById('dayModal').classList.remove('is-open');
+    }
+
+    function addTaskOnCalendarDay() {
+      const key = calendar.dayKey;
+      openTaskModal();
+      if (key && document.getElementById('taskModal').classList.contains('is-open')) {
+        document.getElementById('taskDueDateInput').value = key;
+        updateSeriesPreview();
+      }
+    }
+
+    document.getElementById('calendarScroll').addEventListener('scroll', onCalendarScroll, { passive: true });
+    // Cells are square, so a width change shifts every row: keep the visible week anchored
+    let calAnchor = null;
+    let calWidth = 0;
+    new ResizeObserver(() => {
+      const scroller = document.getElementById('calendarScroll');
+      if (calendar.open && calAnchor && scroller.clientWidth !== calWidth) {
+        const row = scroller.querySelector(`[data-week="${calAnchor.week}"]`);
+        if (row) scroller.scrollTop = row.offsetTop + calAnchor.offset * row.offsetHeight;
+      }
+      calWidth = scroller.clientWidth;
+    }).observe(document.getElementById('calendarScroll'));
+    document.getElementById('calendarScroll').addEventListener('scroll', () => {
+      const scroller = document.getElementById('calendarScroll');
+      if (scroller.clientWidth !== calWidth) return;
+      saveCalendarAnchor();
+    }, { passive: true });
+
+    function saveCalendarAnchor() {
+      const scroller = document.getElementById('calendarScroll');
+      const row = [...scroller.children].find(r => r.offsetTop + r.offsetHeight > scroller.scrollTop);
+      if (row) calAnchor = { week: row.dataset.week, offset: (scroller.scrollTop - row.offsetTop) / row.offsetHeight };
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && calendar.dayKey
+          && !document.getElementById('taskModal').classList.contains('is-open')
+          && !document.getElementById('confirmModal').classList.contains('is-open')) {
+        closeDayModal();
+      }
+    });
+
 
     let confirmAction = null;
     function openConfirmModal(title, desc, onConfirm) {

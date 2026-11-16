@@ -17,6 +17,23 @@ the same app with sample Electrical Engineering courses and tasks.
   editing and marking tasks as completed are not limited.
 - The preview cannot read or change the owner's data.
 
+## Calendar
+
+The **Calendar** tab sits above **All Courses** and opens a full-width month
+calendar of all tasks. It works like a course tab: opening it deselects the
+current tab, and clicking **All Courses** or any course closes it. Tasks appear
+on their due date.
+
+- Weeks start on Sunday and each row is one week.
+- Scroll up or down to move between months; there are no next/previous buttons.
+- Months alternate a subtle background tint, a thin line marks where each month
+  starts, and days outside the month in view are dimmed.
+- Day cells stay square: if a day has more than 3 tasks, the cell shows 2 and a
+  "+N more tasks" line.
+- Click any day to open a popup listing every task due that day, with full details
+  and editing, plus an **Add task on this day** button.
+- **Today** jumps back to the current month.
+
 ## ⚠️ Disclaimer
 
 This project was made as a **homework assignment**. The assignment asked for the
